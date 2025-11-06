@@ -93,7 +93,7 @@ const WorkingProcess = () => {
 
               {/* Title & Description */}
               <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-              <p className="text-white/80 text-base">{step.description}</p>
+              <p className="text-black/80 text-base">{step.description}</p>
 
               {/* Arrow (except last one) */}
               {i < steps.length - 1 && (
