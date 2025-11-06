@@ -18,24 +18,24 @@ const HeroSection = () => (
       <p className="text-lg text-gray-600 mb-5">
         Launch Your IT Project with Expert Consulting - Custom Solutions, SAP Services, and Digital Transformation Support.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 text-lg text-gray-600 gap-2 mb-6">
         <ul className="space-y-2">
           <li className="flex items-center">
-            <span className="text-blue-600 text-xl mr-2">✓</span>
+            <span className="text-gray-600 text-xl mr-2">✓</span>
             IT Professional services
           </li>
           <li className="flex items-center">
-            <span className="text-blue-600 text-xl mr-2">✓</span>
+            <span className="text-gray-600 text-xl mr-2">✓</span>
             Managed IT services
           </li>
         </ul>
         <ul className="space-y-2">
           <li className="flex items-center">
-            <span className="text-blue-600 text-xl mr-2">✓</span>
-            Application Development services
+            <span className="text-gray-600 text-xl mr-2">✓</span>
+            Application Development
           </li>
           <li className="flex items-center">
-            <span className="text-blue-600 text-xl mr-2">✓</span>
+            <span className="text-gray-600 text-xl mr-2">✓</span>
             Launch Your IT Project with Expert Consulting.
           </li>
         </ul>

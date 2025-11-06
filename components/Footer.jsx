@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 
-// Replace '/assets/footer-bg.jpg' with your actual image path
 const Footer = () => {
   return (
     <footer
@@ -25,75 +24,86 @@ const Footer = () => {
             href="#contact"
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.98 }}
-            // Use gradient background as visible in image
             className="inline-block bg-gradient-to-r from-[#4f38ea] to-[#98A3D1] px-8 py-3 rounded-xl font-semibold text-white shadow-lg transition mb-16"
           >
             GET IN TOUCH &rarr;
           </motion.a>
         </motion.div>
-        {/* Footer Grid Links Section */}
+
+        {/* Footer Grid Section */}
         <div className="flex flex-col md:flex-row justify-between items-start pt-8">
-          {/* Logo/Description */}
+          {/* Logo and Description */}
           <div className="md:w-1/4 w-full mb-10 md:mb-0 flex flex-col items-start">
             <div className="flex items-center mb-4">
-              <img alt="neotech logo" src="/assets/logo2.png" style={{height: '48px'}} />
-              
+              <img alt="logo" src="/assets/logo2.png" style={{ height: "48px" }} />
             </div>
             <p className="text-base text-white/80 mb-6">
               We are the best world Information <br />
               Technology Company. Providing <br />
-              the highest quality in hardware, Software <br />
-              &amp; Network solutions.
+              the highest quality in hardware, software <br />
+              &amp; network solutions.
             </p>
-            <div className="flex space-x-6 mt-1 text-xl">
-              <a href=" " aria-label="Facebook"><i className="fab fa-facebook-f" /></a>
-              <a href=" " aria-label="X"><i className="fab fa-x-twitter" /></a>
-              <a href=" " aria-label="LinkedIn"><i className="fab fa-linkedin-in" /></a>
-              <a href=" " aria-label="Instagram"><i className="fab fa-instagram" /></a>
-            </div>
           </div>
+
           {/* Company Links */}
           <div className="md:w-1/4 w-full mb-10 md:mb-0">
             <h3 className="font-bold mb-5 text-xl">Company</h3>
             <ul className="space-y-3 text-base text-white/80">
-              <li><a href=" ">About Company</a></li>
-              <li><a href=" ">For Customers</a></li>
-              <li><a href=" ">Blog & News</a></li>
-              <li><a href=" ">Careers & Reviews</a></li>
-              <li><a href=" ">Sitemap</a></li>
+              <li><a href="#">About Company</a></li>
+              <li><a href="#">For Customers</a></li>
+              <li><a href="#">Blog & News</a></li>
+              <li><a href="#">Careers & Reviews</a></li>
+              <li><a href="#">Sitemap</a></li>
             </ul>
           </div>
-          {/* Quick Links */}
-          <div className="md:w-1/4 w-full mb-10 md:mb-0">
-            <h3 className="font-bold mb-5 text-xl">Quick Links</h3>
-            <ul className="space-y-3 text-base text-white/80">
-              <li><a href=" ">Services</a></li>
-              <li><a href=" ">Pricing</a></li>
-              <li><a href=" ">Team</a></li>
-              <li><a href=" ">Contact</a></li>
-              <li><a href=" ">Terms of use</a></li>
-            </ul>
-          </div>
-          {/* Contact */}
+
+          {/* Contact Section */}
           <div className="md:w-1/4 w-full">
-            <h3 className="font-bold mb-5 text-xl">Contact</h3>
-            <address className="not-italic text-base text-white/80 mb-4">
-              2972 Westheimer Rd. Santa <br />
-              Ana, Illinois 85486
-            </address>
+            <h3 className="font-bold mb-5 text-xl">Contact Us</h3>
             <div className="mb-4">
-              <span className="text-white/80">Need help? Call us </span>
-              <a href="tel:+0844560789" className="text-[#34a6ff] font-semibold">
-                +(084) 456-0789
+              <span className="text-white/80">Need help? <br />Call us </span>
+              <a href="tel:+919634701727" className="text-[#34a6ff] font-semibold block">
+                +91 9634701727
               </a>
             </div>
-            <a href="mailto:support@example.com" className="text-white/80 text-base">
-              support@example.com
+            <a href="mailto:info@steploops.com" className="text-white/80 text-base block mb-6">
+              info@steploops.com
             </a>
+
+            {/* Social Links */}
+            <div className="flex space-x-6 text-2xl mt-4">
+              <a
+                href="https://www.instagram.com/steploops_technologies/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="hover:text-[#E1306C] transition"
+              >
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/steploops-technologies-pvt-ltd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="hover:text-[#0077B5] transition"
+              >
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://discord.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord"
+                className="hover:text-[#5865F2] transition"
+              >
+                <i className="fab fa-discord"></i>
+              </a>
+            </div>
           </div>
         </div>
-        
-        {/* Floating back to top button (optional) */}
+
+        {/* Back to Top Button */}
         <motion.button
           className="fixed bottom-10 right-10 w-[72px] h-[72px] rounded-full bg-[#98A3D1] flex justify-center items-center shadow-lg text-3xl text-white"
           whileHover={{ scale: 1.08 }}
