@@ -15,8 +15,8 @@ export default function HomePage() {
         <Home />
         <ServicesGrid />
         <HeroSection />
-        <Vision />
         <Digital />
+        <Vision />
       </main>
       <Footer />
     </div>
