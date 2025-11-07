@@ -1,4 +1,6 @@
+"use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -20,14 +22,16 @@ const Footer = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex flex-col items-center"
         >
-          <motion.a
-            href="#contact"
-            whileHover={{ scale: 1.06 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-block bg-gradient-to-r from-[#4f38ea] to-[#98A3D1] px-8 py-3 rounded-xl font-semibold text-white shadow-lg transition mb-16"
-          >
-            GET IN TOUCH &rarr;
-          </motion.a>
+          <Link href="/contact">
+          {/* here to add contact.js component */}
+            <motion.button
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-block bg-gradient-to-r from-[#4f38ea] to-[#98A3D1] px-8 py-3 rounded-xl font-semibold text-white shadow-lg transition mb-16"
+            >
+              GET IN TOUCH &rarr;
+            </motion.button>
+          </Link>
         </motion.div>
 
         {/* Footer Grid Section */}
