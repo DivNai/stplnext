@@ -112,10 +112,9 @@ const WideServiceCard = ({ image, title, icon, hiddenText, index }) => {
         </motion.div>
       </motion.div>
 
-      {/* Hover Triangles and Hidden Text */}
+      {/* Hover Triangles */}
       {hovered && (
         <>
-          {/* Top-left gradient triangle */}
           <motion.div
             className="absolute top-0 left-0 w-2/5 h-2/5"
             style={{
@@ -128,7 +127,6 @@ const WideServiceCard = ({ image, title, icon, hiddenText, index }) => {
             transition={{ duration: 0.5 }}
           />
 
-          {/* Bottom-right gradient triangle */}
           <motion.div
             className="absolute bottom-0 right-0 w-2/5 h-2/5"
             style={{
@@ -140,24 +138,24 @@ const WideServiceCard = ({ image, title, icon, hiddenText, index }) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           />
-
-          {/* Hidden Text */}
-          <motion.div
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 px-6 text-center text-sm text-black z-30 max-w-xs"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {hiddenText}
-          </motion.div>
         </>
       )}
 
-      {/* Icon and Title — Icon stays visible and moves up on hover */}
+      {/* Hidden Text - Full width, centered */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="absolute bottom-0 left-0 w-full px-6 py-4 text-center text-base text-black font-medium  z-30"
+      >
+        {hovered && hiddenText}
+      </motion.div>
+
+      {/* Icon and Title */}
       <motion.div
         animate={{
-          y: hovered ? -135 : 0, // Moves up when hovered
-          opacity: 1, // Always visible
+          y: hovered ? -50 : 0,
+          opacity: 1,
         }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="flex flex-col items-center absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full z-20 text-center text-white"
