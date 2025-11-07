@@ -1,5 +1,8 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router"; // ✅ Import router for navigation
 
 const images = ["/assets/building2.jpg", "/assets/homepage1.jpg"];
 
@@ -8,30 +11,51 @@ const getVariants = (dir, type) =>
     ? type === "enter"
       ? {
           initial: { opacity: 0, x: -120, scale: 1.1 },
-          animate: { opacity: 1, x: 0, scale: 1, transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] } },
+          animate: {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] },
+          },
           exit: {},
         }
       : {
           initial: {},
           animate: {},
-          exit: { opacity: 0, x: 120, scale: 0.98, transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] } },
+          exit: {
+            opacity: 0,
+            x: 120,
+            scale: 0.98,
+            transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] },
+          },
         }
     : type === "enter"
     ? {
         initial: { opacity: 0, y: 120, scale: 1.1 },
-        animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] } },
+        animate: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] },
+        },
         exit: {},
       }
     : {
         initial: {},
         animate: {},
-        exit: { opacity: 0, y: -120, scale: 0.98, transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] } },
+        exit: {
+          opacity: 0,
+          y: -120,
+          scale: 0.98,
+          transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] },
+        },
       };
 
 const Home = () => {
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState(null);
   const [direction, setDirection] = useState(0);
+  const router = useRouter(); // ✅ initialize router
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -87,17 +111,25 @@ const Home = () => {
       {/* Main Content */}
       <div className="relative z-20 max-w-3xl md:max-w-4xl lg:max-w-5xl px-4 sm:px-6 md:px-8 lg:px-10">
         <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 drop-shadow-xl">
-          BRIGHT MINDS,<br />BOLDER<br />INNOVATIONS.
+          BRIGHT MINDS,
+          BOLDER
+          <br />
+          INNOVATIONS.
         </h1>
         <p className="text-white text-md md:text-lg mb-8 drop-shadow">
-          We empower businesses across industries with modern IT, tech services, and digital experiences to achieve their goals.
+          We empower businesses across industries with modern IT, tech services,
+          and digital experiences to achieve their goals.
         </p>
-        <a
-          href="#services"
+
+        {/* ✅ Button now routes to /aboutus/about */}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => router.push("/Aboutus/about")}
           className="inline-block bg-gradient-to-r from-indigo-500 to-blue-400 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-3 md:py-4 font-semibold rounded-xl shadow-lg hover:opacity-90 transition"
         >
-          READ MORE &rarr;
-        </a>
+          WHO WE ARE &rarr;
+        </motion.button>
       </div>
     </div>
   );
