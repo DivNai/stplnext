@@ -11,7 +11,15 @@ const cards = [
     title: "Customized IT Solutions",
     icon: (
       <svg className="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24">
-        <rect x="6" y="6" width="12" height="9" rx="2" stroke="currentColor" strokeWidth="2" />
+        <rect
+          x="6"
+          y="6"
+          width="12"
+          height="9"
+          rx="2"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
         <path stroke="currentColor" strokeWidth="2" d="M4 18h16" />
       </svg>
     ),
@@ -23,7 +31,15 @@ const cards = [
     title: "Comprehensive SAP Services",
     icon: (
       <svg className="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24">
-        <rect x="4" y="7" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
+        <rect
+          x="4"
+          y="7"
+          width="16"
+          height="10"
+          rx="2"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
         <path stroke="currentColor" strokeWidth="2" d="M9 3v4m6-4v4" />
       </svg>
     ),
@@ -35,7 +51,15 @@ const cards = [
     title: "Sustainable Success",
     icon: (
       <svg className="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24">
-        <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
+        <rect
+          x="7"
+          y="7"
+          width="10"
+          height="10"
+          rx="2"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
         <path stroke="currentColor" strokeWidth="2" d="M12 3v2m0 14v2" />
       </svg>
     ),
@@ -73,7 +97,7 @@ const WideServiceCard = ({ image, title, icon, hiddenText, index }) => {
       {/* Background Image with opacity transition */}
       <motion.div className="relative w-full h-64 md:h-96">
         <motion.div
-          animate={{ opacity: hovered ? 0.4 : 1 }}
+          animate={{ opacity: hovered ? 0.75 : 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="absolute inset-0"
         >
@@ -97,7 +121,7 @@ const WideServiceCard = ({ image, title, icon, hiddenText, index }) => {
             style={{
               clipPath: "polygon(0 0, 100% 0, 0 100%)",
               background:
-                "linear-gradient(135deg, rgba(30,64,175,0.85), rgba(67,56,202,0.87), rgba(91,33,182,0.90))",
+                "linear-gradient(135deg, rgba(30,64,175,0.85), rgba(67,56,202,0.87), rgba(91,33,182,0.9))",
             }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -119,8 +143,8 @@ const WideServiceCard = ({ image, title, icon, hiddenText, index }) => {
 
           {/* Hidden Text */}
           <motion.div
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 px-6 text-center text-sm text-black z-30 max-w-xs"
-            initial={{ opacity: 0, y: 30 }}
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 px-6 text-center text-sm text-black z-30 max-w-xs"
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
@@ -129,16 +153,25 @@ const WideServiceCard = ({ image, title, icon, hiddenText, index }) => {
         </>
       )}
 
-      {/* Icon and Title (visible before hover) */}
+      {/* Icon and Title — Icon stays visible and moves up on hover */}
       <motion.div
-        animate={{ opacity: hovered ? 0 : 1, y: hovered ? -20 : 0 }}
-        transition={{ duration: 0.4 }}
+        animate={{
+          y: hovered ? -135 : 0, // Moves up when hovered
+          opacity: 1, // Always visible
+        }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="flex flex-col items-center absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full z-20 text-center text-white"
       >
         <div className="flex justify-center items-center rounded-full bg-[#6246ea] w-16 h-16 mb-4 shadow-lg">
           {icon}
         </div>
-        <h3 className="text-xl font-semibold text-white drop-shadow">{title}</h3>
+        <motion.h3
+          animate={{ opacity: hovered ? 0 : 1, y: hovered ? -10 : 0 }}
+          transition={{ duration: 0.4 }}
+          className="text-xl font-semibold text-white drop-shadow"
+        >
+          {title}
+        </motion.h3>
       </motion.div>
     </motion.div>
   );
