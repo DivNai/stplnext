@@ -21,22 +21,22 @@ const services = [
   {
     title: "Mobile Development",
     text: "Our Mobile Development services are focused on delivering high-quality, custom mobile applications that cater to the diverse needs of your audience. We understand the importance of having a strong mobile presence in today’s digital landscape, which is why we employ the latest technologies and frameworks to develop apps that are not only functional but also engaging and user-friendly. Our development process includes rigorous testing to ensure that the final product is reliable, performs well under various conditions, and provides a seamless user experience.",
-    image: "/assets/robotic-hand.jpg",
+    image: "/assets/mobile dev.jpg",
   },
   {
     title: "Web Development",
     text: "Our Web Development services are dedicated to creating highly functional, aesthetically pleasing, and responsive websites that enhance your online presence and drive user engagement. We offer a comprehensive range of web development solutions, including front-end development that focuses on intuitive and visually appealing interfaces, and back-end development that ensures robust performance and seamless integration with your existing systems.",
-    image: "/assets/server-room.jpg",
+    image: "/assets/web dev.jpg",
   },
   {
     title: "Training and Recruitment",
     text: "Our Training and Recruitment services are designed to empower your organization with the skills and talent necessary for achieving success in a competitive market. We offer training programs that cover essential IT and business topics, ensuring your team is equipped with the latest skills. Our recruitment process ensures you get candidates who align with your project needs and company culture.",
-    image: "/assets/marketing.jpg",
+    image: "/assets/training1.jpg",
   },
   {
     title: "Custom Software Development",
     text: "Our Custom Software Development services are tailored to create bespoke solutions that address your organization’s specific needs and challenges. We specialize in designing and developing software applications that integrate seamlessly with your existing systems, providing a high level of functionality and performance.",
-    image: "/assets/consulting.jpg",
+    image: "/assets/custon soft_dev.jpg",
   },
 ];
 

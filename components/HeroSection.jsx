@@ -34,7 +34,7 @@ const ImageContainer = () => (
         fill
         className="object-cover"
         priority
-        sizes="(max-width: 1024px) 100vw, 50vw"
+        sizes="(max-width: 1024px) 80vw, 30vw"
         unoptimized
       />
     </div>
@@ -46,7 +46,7 @@ const ImageContainer = () => (
         alt="Team collaboration at desk"
         fill
         className="object-cover"
-        sizes="(max-width: 1024px) 100vw, 50vw"
+        sizes="(max-width: 1024px) 80vw, 35vw"
         unoptimized
       />
     </div>
