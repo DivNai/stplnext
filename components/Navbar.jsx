@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,13 +27,13 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between">
         {/* Logo (Left Side) */}
         <div className="flex items-center">
-          <a href=" " className="flex items-center">
+          <Link href="/" className="flex items-center">
             <img
               src="/assets/logo2.png"
               alt="StepLoop Logo"
               className="h-10 w-auto mr-2"
             />
-          </a>
+          </Link>
         </div>
 
         {/* Center Menu (Desktop) */}
@@ -44,7 +45,17 @@ const Navbar = () => {
           <li className="hover:text-indigo-400 cursor-pointer">Contact</li>
         </ul>
 
-        {/* Hamburger Button (Right Side on Mobile) */}
+        {/* Right Side Button (Desktop Only) */}
+        <div className="hidden md:flex items-center">
+          <Link href="/contact">
+            <button className="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-semibold text-white border border-indigo-400 rounded-md group">
+              <span className="absolute left-0 top-0 h-full w-0 bg-indigo-600 transition-all duration-500 ease-in-out group-hover:w-full"></span>
+              <span className="relative z-10">Join Us</span>
+            </button>
+          </Link>
+        </div>
+
+        {/* Hamburger Button (Mobile) */}
         <button
           className="md:hidden text-white focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -81,6 +92,16 @@ const Navbar = () => {
           <li className="hover:text-indigo-400 cursor-pointer">Services</li>
           <li className="hover:text-indigo-400 cursor-pointer">Pages</li>
           <li className="hover:text-indigo-400 cursor-pointer">Contact</li>
+
+          {/* Join Us Button (Mobile Menu) */}
+          <li>
+            <Link href="/contact">
+              <button className="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-semibold text-white border border-indigo-400 rounded-md group">
+                <span className="absolute left-0 top-0 h-full w-0 bg-indigo-600 transition-all duration-500 ease-in-out group-hover:w-full"></span>
+                <span className="relative z-10">Join Us</span>
+              </button>
+            </Link>
+          </li>
         </ul>
       )}
     </nav>
