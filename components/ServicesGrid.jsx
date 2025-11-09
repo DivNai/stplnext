@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-// Emoji icons (replace with lucide or react-icons if you prefer)
+// Simple icons (replace with lucide-react if needed)
 const TechIcon = () => <span className="text-3xl">🖥️</span>;
 const CloudIcon = () => <span className="text-3xl">☁️</span>;
 const SoftwareIcon = () => <span className="text-3xl">⚙️</span>;
@@ -12,32 +12,34 @@ const ProcessIcon = () => <span className="text-3xl">💼</span>;
 
 // Service Card Component
 const ServiceCard = ({ title, description, icon, image, link }) => {
-  const [hovered, setHovered] = React.useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  const handleTouchStart = () => setIsActive(true);
+  const handleTouchEnd = () => setTimeout(() => setIsActive(false), 150); // smooth exit
 
   return (
     <Link href={link}>
       <motion.div
-        className="relative bg-[#f3f6fb] p-8 h-full flex flex-col justify-between overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
+        className="relative bg-[#f3f6fb] p-8 h-full flex flex-col justify-between overflow-hidden cursor-pointer group hover:shadow-2xl transition-all duration-75"
+        whileHover={{ scale: 1.03 }}
+        transition={{ duration: 0.1, ease: "easeInOut" }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
-        {/* Hover Overlay */}
-        <motion.div
-          className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
+        {/* Hover/Tap Overlay */}
+        <div
+          className={`absolute inset-0 z-10 transition-opacity duration-75 ease-in-out ${
+            isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+          }`}
         >
           {/* Background Image */}
           {image && (
-            <motion.img
+            <img
               src={image}
               alt={title}
-              className="absolute inset-0 w-full h-full object-cover"
-              initial={{ opacity: 0.6 }}
-              animate={{ opacity: hovered ? 0.7 : 0 }}
-              transition={{ duration: 0.25 }}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-75 ease-in-out ${
+                isActive ? "opacity-70" : "opacity-0 group-hover:opacity-70"
+              }`}
             />
           )}
 
@@ -52,17 +54,29 @@ const ServiceCard = ({ title, description, icon, image, link }) => {
             className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-600 via-indigo-500 to-violet-600"
             style={{ clipPath: "polygon(100% 100%, 0 100%, 100% 0)" }}
           ></div>
-        </motion.div>
+        </div>
 
         {/* Icon */}
         <div className="relative z-20 mb-4">{icon}</div>
 
         {/* Text */}
-        <div className="relative z-20 transition-colors duration-300">
-          <h3 className="text-xl font-semibold mb-2 text-black group-hover:text-white transition-colors duration-300">
+        <div
+          className={`relative z-20 transition-colors duration-75 ease-in-out ${
+            isActive ? "text-white" : ""
+          }`}
+        >
+          <h3
+            className={`text-xl font-semibold mb-2 transition-colors duration-75 ease-in-out ${
+              isActive ? "text-white" : "text-black group-hover:text-white"
+            }`}
+          >
             {title}
           </h3>
-          <p className="text-base text-black group-hover:text-white transition-colors duration-300">
+          <p
+            className={`text-base transition-colors duration-75 ease-in-out ${
+              isActive ? "text-white" : "text-black group-hover:text-white"
+            }`}
+          >
             {description}
           </p>
         </div>
@@ -75,21 +89,24 @@ const ServiceCard = ({ title, description, icon, image, link }) => {
 const servicesData = [
   {
     title: "SAP SOLUTIONS",
-    description: "Integrated software for optimizing business operations efficiently.",
+    description:
+      "Integrated software for optimizing business operations efficiently.",
     icon: <TechIcon />,
     image: "/assets/service1.jpg",
     link: "/Testimonials/Testimonial",
   },
   {
     title: "SAP SERVICES",
-    description: "Expert implementation, customization and support for SAP systems.",
+    description:
+      "Expert implementation, customization and support for SAP systems.",
     icon: <CloudIcon />,
     image: "/assets/service2.jpg",
     link: "/Testimonials/Testimonial",
   },
   {
     title: "TRAININGS",
-    description: "Customized programs to upskill teams in modern technologies and practices.",
+    description:
+      "Customized programs to upskill teams in modern technologies and practices.",
     icon: <SoftwareIcon />,
     image: "/assets/service3.jpg",
     link: "/Testimonials/Testimonial",
