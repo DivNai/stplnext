@@ -138,19 +138,44 @@ export default function About() {
       <Navbar />
 
       <main className="flex flex-col flex-grow items-center">
-        {/* Banner */}
-        <div className="relative w-full h-[200px]">
-          <Image
-            src="/assets/building2.jpg"
-            alt="Office Banner"
-            fill
-            className="object-cover"
-            priority
-            unoptimized
-          />
-        </div>
+        {/* ===== BANNER SECTION ===== */}
+        <section className="relative w-full h-[350px] md:h-[450px] flex flex-col justify-center items-center text-center overflow-hidden">
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <Image
+              src="/assets/building2.jpg"
+              alt="Office Banner"
+              fill
+              className="object-cover object-center"
+              priority
+              unoptimized
+            />
+            {/* Overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
+          </div>
 
-        {/* About Us Content */}
+          {/* Banner Text */}
+          <div className="relative z-10 text-white px-4">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-white/80 text-sm md:text-base mb-3 tracking-wide"
+            >
+              HOME / ABOUT US
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl md:text-5xl font-bold"
+            >
+              About Us
+            </motion.h1>
+          </div>
+        </section>
+
+        {/* ===== ABOUT US CONTENT ===== */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -164,20 +189,21 @@ export default function About() {
             experts, we partner with companies to solve unique challenges.
           </p>
           <p className="mb-3">
-            Our expertise spans strategic consulting, system integration, software
-            development, and cloud transformation across multiple industries.
+            Our expertise spans strategic consulting, system integration,
+            software development, and cloud transformation across multiple
+            industries.
           </p>
           <p className="mb-3">
             Our mission is to help businesses embrace technology to streamline
             operations and achieve sustainable growth.
           </p>
           <p className="mb-3">
-            We follow a customer-centric approach, working closely to ensure every
-            solution is future-proof and value-driven.
+            We follow a customer-centric approach, working closely to ensure
+            every solution is future-proof and value-driven.
           </p>
         </motion.div>
 
-        {/* Founders Section */}
+        {/* ===== FOUNDERS SECTION ===== */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -199,7 +225,13 @@ export default function About() {
           ].map((f, i) => (
             <div key={i} className="flex flex-col items-center">
               <div className="w-48 h-48 relative overflow-hidden rounded-md shadow-md">
-                <Image src={f.img} alt={f.name} fill className="object-cover" unoptimized />
+                <Image
+                  src={f.img}
+                  alt={f.name}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
               </div>
               <h3 className="mt-4 text-lg font-bold">{f.name}</h3>
               <p className="text-gray-700">{f.role}</p>
@@ -207,7 +239,7 @@ export default function About() {
           ))}
         </motion.div>
 
-        {/* Hero Section */}
+        {/* ===== HERO SECTION ===== */}
         <HeroComponent />
       </main>
 
