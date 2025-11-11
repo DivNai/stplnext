@@ -89,14 +89,7 @@ export default function Contact() {
 
         {/* Text content */}
         <div className="relative z-10 text-white px-4">
-          <motion.p
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            className="text-white/80 text-sm md:text-base mb-3 tracking-wide"
-          >
-            HOME / CONTACT US
-          </motion.p>
+          
           <motion.h1
             initial="hidden"
             animate="show"
@@ -133,16 +126,16 @@ export default function Contact() {
             <div>
               <h6 className="font-semibold text-[#0f172a]">📍 Location</h6>
               <p className="text-gray-600">
-                8814 Bayberry Ave, Jonesborough, TN 37659
+                326, Nagal Bulandawala, Dehradun. India
               </p>
             </div>
             <div>
               <h6 className="font-semibold text-[#0f172a]">🎧 Support</h6>
-              <p className="text-gray-600">+4800 45 678 900</p>
+              <p className="text-gray-600">+91 9634701727</p>
             </div>
             <div>
               <h6 className="font-semibold text-[#0f172a]">✉️ Email us</h6>
-              <p className="text-gray-600">contact@example.com</p>
+              <p className="text-gray-600">info@steploops.com</p>
             </div>
           </div>
         </motion.div>

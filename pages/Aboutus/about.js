@@ -156,14 +156,7 @@ export default function About() {
 
           {/* Banner Text */}
           <div className="relative z-10 text-white px-4">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-white/80 text-sm md:text-base mb-3 tracking-wide"
-            >
-              HOME / ABOUT US
-            </motion.p>
+            
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

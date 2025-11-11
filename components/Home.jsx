@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/router"; // ✅ Import router for navigation
+import { useRouter } from "next/router";
 
 const images = ["/assets/building2.jpg", "/assets/homepage1.jpg"];
 
@@ -55,7 +55,7 @@ const Home = () => {
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState(null);
   const [direction, setDirection] = useState(0);
-  const router = useRouter(); // ✅ initialize router
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -108,25 +108,23 @@ const Home = () => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/70 z-10" />
 
-      {/* Main Content */}
-      <div className="relative z-20 max-w-3xl md:max-w-4xl lg:max-w-5xl px-4 sm:px-6 md:px-8 lg:px-10">
-        <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 drop-shadow-xl">
+      {/* Main Content (Left-Aligned) */}
+      <div className="relative z-20 text-left max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl pl-2 sm:pl-6 md:pl-10">
+        <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mb-3 drop-shadow-xl">
           BRIGHT MINDS,
-          BOLDER
           <br />
-          INNOVATIONS.
+          BOLDER INNOVATIONS.
         </h1>
-        <p className="text-white text-md md:text-lg mb-8 drop-shadow">
-          We empower businesses across industries with modern IT, tech services,
-          and digital experiences to achieve their goals.
+        <p className="text-white text-sm sm:text-base md:text-lg mb-6 max-w-md drop-shadow">
+          Empowering businesses with cutting-edge IT, digital, and technology
+          services to drive innovation and growth.
         </p>
 
-        {/* ✅ Button now routes to /aboutus/about */}
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.push("/Aboutus/about")}
-          className="inline-block bg-gradient-to-r from-indigo-500 to-blue-400 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-3 md:py-4 font-semibold rounded-xl shadow-lg hover:opacity-90 transition"
+          className="inline-block bg-gradient-to-r from-indigo-500 to-blue-400 text-white text-sm sm:text-base px-5 sm:px-7 md:px-8 py-2 sm:py-3 rounded-lg shadow-md hover:opacity-90 transition"
         >
           WHO WE ARE &rarr;
         </motion.button>
