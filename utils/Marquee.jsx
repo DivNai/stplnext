@@ -3,65 +3,73 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
-const Marquee = ({ benefits, mul = 1, duration = 10 }) => {
+const Marquee = ({ benefits, mul = 1, duration = 10, className = "" }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   const handleResize = () => {
-    if (window.innerWidth <= 1000) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
+    setIsMobile(window.innerWidth <= 1024); // Mobile & tablet responsiveness
   };
-  console.log(isMobile);
+
   useEffect(() => {
-    // Call handleResize once on mount to set the initial state
-    handleResize();
-
+    handleResize(); // Set initial
     window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener on unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []); // Empty dependency array to run effect only on mount/unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-    <div className="overflow-hidden w-full">
+    <div className={`overflow-hidden w-full ${className}`}>
       <motion.div
-        className={`flex gap-6 ${
-          isMobile ? "flex-row gap-3 " : "flex-col"
+        className={`flex ${
+          isMobile ? "flex-row gap-4" : "flex-col gap-6"
         } w-full`}
         animate={
           isMobile
-            ? { x: ["0%", "-400%"] } // Animate horizontally for mobile
-            : { y: ["0%", "-100%"] } // Animate vertically for desktop
+            ? { x: ["0%", "-200%"] } // Horizontal scroll for mobile/tablet
+            : { y: ["0%", "-100%"] } // Vertical scroll for desktop
         }
         transition={{
           duration: duration,
+          repeat: Infinity,
           ease: "linear",
-          repeat: Infinity, // Infinite loop
         }}
-        style={{ display: "flex" }}
       >
-        {/* Duplicate the content for smooth looping */}
+        {/* Smooth infinite loop duplication */}
         {[...benefits, ...benefits].map((card, index) => (
           <div
-            key={`${card.id}-${index}`} // Unique key for each item
-            className="flex flex-col md:gap-4 items-center justify-center bg-white rounded-3xl"
+            key={`${card.id}-${index}`}
+            className="
+              bg-white shadow-sm rounded-2xl
+              flex flex-col justify-between 
+              border border-gray-100
+              transition-all
+            "
             style={{
-              minWidth:  "250px", // Small width for mobile, larger for desktop
-              minHeight: isMobile ? "150px" : "280px", // Small height for mobile, larger for desktop
-              padding: isMobile ? "0.5rem" : "2rem", // Smaller padding on mobile
+              minWidth: isMobile ? "210px" : "100%",
+              minHeight: isMobile ? "150px" : "250px",
+              padding: isMobile ? "0.75rem" : "1.5rem",
             }}
           >
-            <div className="flex flex-col gap-2 items-start justify-start">
-              <span className="text-xl">{card.icon}</span>
-              <h2 className="md:font-bold text-xl md:text-3xl  md:tracking-wide text-black">
+            {/* Icon + Heading */}
+            <div className="flex flex-col gap-2">
+              <span className="text-lg md:text-xl">{card.icon}</span>
+
+              <h2 className="
+                text-sm md:text-lg lg:text-xl 
+                font-semibold text-gray-900
+              ">
                 {card.heading}
               </h2>
             </div>
-            <p className="text-gray-700 text-[.8rem] md:text-base lg:text-lg">
+
+            {/* Content */}
+            <p
+              className="
+                text-[0.7rem] 
+                md:text-sm 
+                lg:text-base
+                text-gray-700 mt-2
+              "
+            >
               {card.content}
             </p>
           </div>

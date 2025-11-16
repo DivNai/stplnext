@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
+import OurBenefits from "../../components/OurBenefits";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
@@ -31,7 +32,6 @@ const ImageContainer = () => (
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.8, ease: "easeOut" }}
   >
-    {/* Background Map Dots */}
     <div
       className="absolute inset-0 bg-center bg-no-repeat opacity-30"
       style={{
@@ -40,7 +40,6 @@ const ImageContainer = () => (
       }}
     />
 
-    {/* Top Right Image */}
     <div className="absolute top-0 right-0 w-[80%] h-[55%] rounded-2xl overflow-hidden shadow-xl">
       <Image
         src="/assets/navbar3.jpg"
@@ -52,7 +51,6 @@ const ImageContainer = () => (
       />
     </div>
 
-    {/* Bottom Left Image */}
     <div className="absolute bottom-0 left-0 w-[80%] h-[55%] rounded-2xl overflow-hidden shadow-2xl">
       <Image
         src="/assets/navbar4.jpg"
@@ -86,7 +84,6 @@ const ContentContainer = () => (
       </p>
     </motion.div>
 
-    {/* Services List */}
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-gray-700">
       {[
         "IT Professional Services",
@@ -105,7 +102,6 @@ const ContentContainer = () => (
       automation to achieve your business goals efficiently.
     </motion.p>
 
-    {/* CTA Button */}
     <motion.button
       variants={itemVariants}
       className="flex items-center justify-center px-8 py-3 text-white font-medium rounded-lg 
@@ -140,7 +136,6 @@ export default function About() {
       <main className="flex flex-col flex-grow items-center">
         {/* ===== BANNER SECTION ===== */}
         <section className="relative w-full h-[350px] md:h-[450px] flex flex-col justify-center items-center text-center overflow-hidden">
-          {/* Background image */}
           <div className="absolute inset-0">
             <Image
               src="/assets/building2.jpg"
@@ -150,13 +145,10 @@ export default function About() {
               priority
               unoptimized
             />
-            {/* Overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
           </div>
 
-          {/* Banner Text */}
           <div className="relative z-10 text-white px-4">
-            
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -234,8 +226,12 @@ export default function About() {
 
         {/* ===== HERO SECTION ===== */}
         <HeroComponent />
+
+        {/* ===== OUR BENEFITS SECTION (ADDED) ===== */}
+        <OurBenefits />
       </main>
 
+      {/* FOOTER */}
       <Footer />
     </div>
   );
