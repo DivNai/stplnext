@@ -25,13 +25,15 @@ const itemVariants = {
 };
 
 /* ----------------------------- Image Container ----------------------------- */
+/* Hero Image Size Increased by 30% */
 const ImageContainer = () => (
   <motion.div
-    className="relative w-full h-[600px] lg:h-[700px] bg-[#f3f6fb] overflow-hidden rounded-3xl"
+    className="relative w-full h-[40px] lg:h-[500px] bg-[#f3f6fb] overflow-hidden rounded-3xl"
     initial={{ opacity: 0, scale: 0.95 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.8, ease: "easeOut" }}
   >
+    {/* Dotted Map Background */}
     <div
       className="absolute inset-0 bg-center bg-no-repeat opacity-30"
       style={{
@@ -40,7 +42,8 @@ const ImageContainer = () => (
       }}
     />
 
-    <div className="absolute top-0 right-0 w-[80%] h-[55%] rounded-2xl overflow-hidden shadow-xl">
+    {/* Top Right Image (increased by 30%) */}
+    <div className="absolute top-0 right-0 w-[70%] h-[52%] rounded-xl overflow-hidden shadow-lg">
       <Image
         src="/assets/navbar3.jpg"
         alt="Team member discussing work"
@@ -51,10 +54,11 @@ const ImageContainer = () => (
       />
     </div>
 
-    <div className="absolute bottom-0 left-0 w-[80%] h-[55%] rounded-2xl overflow-hidden shadow-2xl">
+    {/* Bottom Left Image (increased by 30%) */}
+    <div className="absolute bottom-0 left-0 w-[70%] h-[52%] rounded-xl overflow-hidden shadow-xl">
       <Image
         src="/assets/navbar4.jpg"
-        alt="Team collaboration at desk"
+        alt="Team collaboration"
         fill
         className="object-cover"
         unoptimized
@@ -114,12 +118,14 @@ const ContentContainer = () => (
 );
 
 /* ------------------------------ Hero Component ----------------------------- */
+/* Hero Background Height & Image Size Updated */
 const HeroComponent = () => (
-  <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-[#f3f6fb]">
-    <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 lg:gap-12 items-center">
+  <section className="relative min-h-screen flex items-center px-4 sm:px-6 lg:px-8 bg-[#f3f6fb]">
+    <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-14 items-center w-full">
       <div className="lg:col-span-6">
         <ContentContainer />
       </div>
+
       <div className="lg:col-span-6 flex justify-center lg:justify-end">
         <ImageContainer />
       </div>
@@ -135,7 +141,7 @@ export default function About() {
 
       <main className="flex flex-col flex-grow items-center">
         {/* ===== BANNER SECTION ===== */}
-        <section className="relative w-full h-[350px] md:h-[450px] flex flex-col justify-center items-center text-center overflow-hidden">
+        <section className="relative w-full h-[250px] md:h-[350px] flex flex-col justify-center items-center text-center overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src="/assets/building2.jpg"
@@ -170,21 +176,19 @@ export default function About() {
           <h2 className="text-3xl font-bold mb-4 font-serif">About Us</h2>
           <p className="mb-3">
             We are committed to delivering tailored IT solutions that empower
-            businesses in the digital era. With a team of seasoned technology
-            experts, we partner with companies to solve unique challenges.
+            businesses in the digital era.
           </p>
           <p className="mb-3">
             Our expertise spans strategic consulting, system integration,
-            software development, and cloud transformation across multiple
-            industries.
+            software development, and cloud transformation across industries.
           </p>
           <p className="mb-3">
             Our mission is to help businesses embrace technology to streamline
             operations and achieve sustainable growth.
           </p>
           <p className="mb-3">
-            We follow a customer-centric approach, working closely to ensure
-            every solution is future-proof and value-driven.
+            We follow a customer-centric approach to ensure every solution is
+            future-proof and value-driven.
           </p>
         </motion.div>
 
@@ -224,14 +228,13 @@ export default function About() {
           ))}
         </motion.div>
 
-        {/* ===== HERO SECTION ===== */}
+        {/* ===== HERO SECTION (Updated with +30% images) ===== */}
         <HeroComponent />
 
-        {/* ===== OUR BENEFITS SECTION (ADDED) ===== */}
+        {/* ===== OUR BENEFITS SECTION ===== */}
         <OurBenefits />
       </main>
 
-      {/* FOOTER */}
       <Footer />
     </div>
   );

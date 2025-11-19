@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <img
-              src="/assets/logo2.png"
+              src="/assets/logo-crop.png"
               alt="StepLoop Logo"
               className="h-10 w-auto mr-2"
             />

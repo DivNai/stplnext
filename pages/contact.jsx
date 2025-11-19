@@ -73,7 +73,7 @@ export default function Contact() {
       <Navbar />
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[350px] md:h-[450px] flex flex-col justify-center items-center text-center overflow-hidden">
+      <section className="relative w-full h-[250px] md:h-[350px] flex flex-col justify-center items-center text-center overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
