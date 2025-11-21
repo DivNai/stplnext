@@ -83,7 +83,7 @@ const Navbar = () => {
         <ul
           className={`md:hidden absolute top-full left-0 w-full text-white flex flex-col items-center py-4 space-y-4 font-semibold z-40 transition-all duration-500 ${
             scrolled
-              ? "bg-black/50 backdrop-blur-lg"
+              ? "bg-black/30 backdrop-blur-lg"
               : "bg-black"
           }`}
         >

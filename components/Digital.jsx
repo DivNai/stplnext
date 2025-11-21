@@ -31,17 +31,19 @@ const Digital = () => {
   };
 
   return (
-    <section className="relative w-full h-[80vh] md:h-[85vh] flex items-center bg-[#112049] pt-[60px] md:pt-[70px]">
-      {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <img
-          src="/assets/sapsolu.jpg"
-          alt="Hero background"
-          className="w-full h-full object-cover"
-          style={{ filter: "brightness(0.45)" }}
-        />
-        <div className="absolute inset-0 bg-[#112049] opacity-60" />
-      </div>
+    <section className="relative w-full h-[80vh] md:h-[85vh] flex items-center overflow-hidden pt-[60px] md:pt-[70px]">
+      {/* Background Video */}
+      <video
+        src="/assets/bg-digital.mp4"   
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Dark overlay to make text readable */}
+      <div className="absolute inset-0 bg-[#0A1533]/70 backdrop-blur-[1px]"></div>
 
       {/* Content */}
       <motion.div
@@ -52,7 +54,7 @@ const Digital = () => {
       >
         <motion.h1
           variants={itemFadeLeft}
-          className="text-white font-extrabold text-2xl md:text-4xl leading-snug mb-6 text-left"
+          className="text-white font-extrabold text-2xl md:text-4xl leading-snug mb-6 text-left drop-shadow-xl"
         >
           Transform your digital vision
           <br /> with expert IT consulting.
@@ -60,7 +62,7 @@ const Digital = () => {
 
         <motion.p
           variants={itemFadeUp}
-          className="text-[#c9d1e7] text-base md:text-lg max-w-lg mb-8 text-left"
+          className="text-[#d4ddf5] text-base md:text-lg max-w-lg mb-8 text-left drop-shadow-md"
         >
           We deliver customized IT strategies to optimize operations, improve
           security, and drive results—using modern technology designed to scale
@@ -68,13 +70,10 @@ const Digital = () => {
         </motion.p>
 
         {/* Center Button */}
-        <motion.div
-          variants={itemFadeUp}
-          className="flex justify-center w-full"
-        >
+        <motion.div variants={itemFadeUp} className="flex justify-start w-full">
           <button
             onClick={handleContactClick}
-            className="bg-[#98A3D1] hover:bg-blue-800 transition px-5 py-2 text-white font-semibold rounded-md shadow-md text-sm"
+            className="bg-[#9aa7d8] hover:bg-blue-800 transition px-5 py-2 text-white font-semibold rounded-md shadow-md text-sm"
           >
             Contact Us →
           </button>

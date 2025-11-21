@@ -67,8 +67,7 @@ const ContentContainer = () => (
       </h1>
 
       <p className="text-lg text-gray-600 max-w-lg">
-        We have over 20+ years of experience in all stages of software design,
-        development, maintenance, and support.
+        Crafting, launching, and supporting software that drives your business forward.
       </p>
     </motion.div>
 

@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 
 const images = ["/assets/building2.jpg", "/assets/homepage1.jpg"];
 
+/* ---------- Background Variants (unchanged) ---------- */
 const getVariants = (dir, type) =>
   dir === 0
     ? type === "enter"
@@ -57,6 +58,7 @@ const Home = () => {
   const [direction, setDirection] = useState(0);
   const router = useRouter();
 
+  /* ---------- Background Auto Switch Logic ---------- */
   useEffect(() => {
     const interval = setInterval(() => {
       setPrev(current);
@@ -65,6 +67,21 @@ const Home = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [current]);
+
+  /* ---------- Typewriter Text Logic ---------- */
+  const fullText = `BRIGHT MINDS,
+BOLDER INNOVATIONS.`;
+
+  const [displayedText, setDisplayedText] = useState("");
+  useEffect(() => {
+    let index = 0;
+    const typing = setInterval(() => {
+      setDisplayedText(fullText.slice(0, index));
+      index++;
+      if (index > fullText.length) clearInterval(typing);
+    }, 60); // typing speed here
+    return () => clearInterval(typing);
+  }, []);
 
   return (
     <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[100vh] overflow-hidden flex items-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24">
@@ -105,16 +122,20 @@ const Home = () => {
         exit="exit"
       />
 
-      {/* Overlay */}
+      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/70 z-10" />
 
-      {/* Main Content (Left-Aligned) */}
+      {/* ---------- Main Content ---------- */}
       <div className="relative z-20 text-left max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl pl-2 sm:pl-6 md:pl-10">
-        <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mb-3 drop-shadow-xl">
-          BRIGHT MINDS,
-          <br />
-          BOLDER INNOVATIONS.
-        </h1>
+        
+        {/* TYPEWRITER HEADING */}
+        <motion.h1
+          className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mb-3 whitespace-pre-line drop-shadow-xl"
+        >
+          {displayedText}
+          <span className="text-indigo-400 animate-pulse">|</span>
+        </motion.h1>
+
         <p className="text-white text-sm sm:text-base md:text-lg mb-6 max-w-md drop-shadow">
           Empowering businesses with cutting-edge IT, digital, and technology
           services to drive innovation and growth.
@@ -126,7 +147,7 @@ const Home = () => {
           onClick={() => router.push("/Aboutus/about")}
           className="inline-block bg-gradient-to-r from-indigo-500 to-blue-400 text-white text-sm sm:text-base px-5 sm:px-7 md:px-8 py-2 sm:py-3 rounded-lg shadow-md hover:opacity-90 transition"
         >
-          WHO WE ARE &rarr;
+          WHO WE ARE →
         </motion.button>
       </div>
     </div>
