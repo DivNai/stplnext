@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-// Animation Variants
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: (delay = 0) => ({
@@ -16,52 +15,77 @@ const fadeUp = {
 };
 
 export default function Contact() {
-  // 🌟 React states for form inputs
+  const [category, setCategory] = useState("general");
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+
+  // ✅ FIXED phone state
   const [phone, setPhone] = useState("");
+
+  const [email, setEmail] = useState("");
+  const [product, setProduct] = useState("");
+  const [jobRole, setJobRole] = useState("");
+  const [heardFrom, setHeardFrom] = useState("");
+  const [cvFile, setCvFile] = useState(null);
+
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 📨 Handle form submit
+  const fileInputRef = useRef(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = { firstName, lastName, email, phone, message };
+    const formData = new FormData();
+    formData.append("category", category);
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("message", message);
+
+    if (category === "review") {
+      formData.append("product", product);
+    }
+
+    if (category === "work") {
+      formData.append("jobRole", jobRole);
+      formData.append("heardFrom", heardFrom);
+      if (cvFile) formData.append("cvFile", cvFile);
+    }
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: formData,
       });
 
       const text = await res.text();
-      console.log("Raw response:", text);
-
       let data;
       try {
         data = JSON.parse(text);
       } catch {
-        alert("Server returned unexpected data.");
-        setLoading(false);
+        alert("Unexpected server response.");
         return;
       }
 
       if (res.ok && data.success) {
-        alert("✅ Message sent successfully!");
+        alert("Message sent successfully!");
         setFirstName("");
         setLastName("");
         setEmail("");
         setPhone("");
+        setProduct("");
+        setJobRole("");
+        setHeardFrom("");
+        setCvFile(null);
         setMessage("");
       } else {
-        alert("❌ Failed to send message: " + (data.error || "Unknown error"));
+        alert("Failed: " + (data.error || "Unknown error"));
       }
-    } catch (error) {
-      console.error("Fetch error:", error);
+    } catch {
       alert("Network or server error.");
     } finally {
       setLoading(false);
@@ -72,9 +96,8 @@ export default function Contact() {
     <>
       <Navbar />
 
-      {/* ===== HERO SECTION ===== */}
+      {/* HERO */}
       <section className="relative w-full h-[250px] md:h-[350px] flex flex-col justify-center items-center text-center overflow-hidden">
-        {/* Background image */}
         <div className="absolute inset-0">
           <Image
             src="/assets/building1.jpg"
@@ -83,13 +106,10 @@ export default function Contact() {
             className="object-cover object-center"
             priority
           />
-          {/* Soft overlay for readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
         </div>
 
-        {/* Text content */}
         <div className="relative z-10 text-white px-4">
-          
           <motion.h1
             initial="hidden"
             animate="show"
@@ -101,9 +121,9 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ===== MAIN CONTACT SECTION ===== */}
+      {/* CONTACT MAIN */}
       <section className="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start bg-white text-black">
-        {/* LEFT SIDE - Contact Info */}
+        {/* LEFT INFO */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -117,45 +137,36 @@ export default function Contact() {
             Get Our Contacts <br /> From Here
           </h2>
           <p className="text-gray-600 leading-relaxed">
-            Get in touch to discuss your employee wellbeing needs today. Please
-            give us a call, drop us an email or fill out the contact form and
-            we’ll get back to you.
+            Contact us regarding general queries, product feedback or
+            collaboration opportunities.
           </p>
-
-          <div className="space-y-6 mt-10">
-            <div>
-              <h6 className="font-semibold text-[#0f172a]">📍 Location</h6>
-              <p className="text-gray-600">
-                326, Nagal Bulandawala, Dehradun. India
-              </p>
-            </div>
-            <div>
-              <h6 className="font-semibold text-[#0f172a]">🎧 Support</h6>
-              <p className="text-gray-600">+91 9634701727</p>
-            </div>
-            <div>
-              <h6 className="font-semibold text-[#0f172a]">✉️ Email us</h6>
-              <p className="text-gray-600">info@steploops.com</p>
-            </div>
-          </div>
         </motion.div>
 
-        {/* RIGHT SIDE - Contact Form */}
+        {/* RIGHT FORM */}
         <motion.div
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           className="bg-white p-8 shadow-xl rounded-2xl border border-gray-100"
         >
-          <h3 className="text-2xl font-bold text-[#0f172a] mb-2">
-            Ready to Get Started?
-          </h3>
-          <p className="text-gray-500 mb-8 text-sm">
-            Your email address will not be published. Required fields are marked
-            *
-          </p>
+          {/* Category */}
+          <div className="mb-6">
+            <label className="block mb-2 font-semibold text-gray-700">
+              Choose Query Type *
+            </label>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full p-3 rounded-md border border-gray-300"
+            >
+              <option value="general">General Enquiry</option>
+              <option value="review">Product Review</option>
+              <option value="work">Work With Us</option>
+            </select>
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
+            {/* NAME FIELDS — COMMON */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 type="text"
@@ -163,44 +174,117 @@ export default function Contact() {
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 required
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7A6CF6]"
+                className="w-full p-3 border rounded-md"
               />
+
               <input
                 type="text"
                 placeholder="Last Name*"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 required
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7A6CF6]"
+                className="w-full p-3 border rounded-md"
               />
             </div>
 
+            {/* ✅ EMAIL + MOBILE NUMBER — NOW COMMON FOR ALL CATEGORIES */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 type="text"
-                placeholder="Phone Number*"
+                placeholder="Mobile Number*"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7A6CF6]"
+                className="w-full p-3 border rounded-md"
               />
+
               <input
                 type="email"
-                placeholder="Your Email*"
+                placeholder="Email*"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7A6CF6]"
+                className="w-full p-3 border rounded-md"
               />
             </div>
 
+            {/* PRODUCT REVIEW SECTION */}
+            {category === "review" && (
+              <select
+                value={product}
+                onChange={(e) => setProduct(e.target.value)}
+                required
+                className="w-full p-3 border rounded-md"
+              >
+                <option value="">Select Product</option>
+                <option value="CRM">CRM</option>
+                <option value="VendorBook">VendorBook</option>
+              </select>
+            )}
+
+            {/* WORK WITH US SECTION */}
+            {category === "work" && (
+              <>
+                {/* CV Upload Button */}
+                <div>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    className="hidden"
+                    onChange={(e) => setCvFile(e.target.files[0])}
+                    accept=".pdf,.doc,.docx"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current.click()}
+                    className="w-full p-3 bg-[#7A6CF6] text-white rounded-md font-semibold hover:bg-[#5f54d1]"
+                  >
+                    {cvFile ? "Change CV File" : "Upload CV"}
+                  </button>
+
+                  {cvFile && (
+                    <p className="text-sm mt-2 text-gray-600">
+                      Selected: {cvFile.name}
+                    </p>
+                  )}
+                </div>
+
+                <select
+                  value={jobRole}
+                  onChange={(e) => setJobRole(e.target.value)}
+                  required
+                  className="w-full p-3 border rounded-md"
+                >
+                  <option value="">Select Job Role</option>
+                  <option value="SAP">SAP</option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="Mobile Development">Mobile Development</option>
+                </select>
+
+                <select
+                  value={heardFrom}
+                  onChange={(e) => setHeardFrom(e.target.value)}
+                  required
+                  className="w-full p-3 border rounded-md"
+                >
+                  <option value="">How did you hear about us?</option>
+                  <option value="linkedin">LinkedIn</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="website">Website</option>
+                  <option value="referral">Referral</option>
+                </select>
+              </>
+            )}
+
+            {/* MESSAGE */}
             <textarea
-              placeholder="How Can We Assist You..."
+              placeholder="How can we assist you...?"
               rows="5"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7A6CF6]"
+              className="w-full p-3 border rounded-md"
             ></textarea>
 
             <motion.button
@@ -208,7 +292,7 @@ export default function Contact() {
               whileTap={{ scale: 0.97 }}
               type="submit"
               disabled={loading}
-              className="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-[#7A6CF6] to-[#4f38ea] text-white font-semibold rounded-md shadow-lg hover:shadow-xl transition"
+              className="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-[#7A6CF6] to-[#4f38ea] text-white font-semibold rounded-md"
             >
               {loading ? "Sending..." : "SUBMIT REQUEST →"}
             </motion.button>

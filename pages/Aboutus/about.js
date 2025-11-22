@@ -1,5 +1,3 @@
-// Enhanced About Page with richer design, animations, and founders with name-only display
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -8,6 +6,9 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import OurBenefits from "../../components/OurBenefits";
 import { ChevronRight } from "lucide-react";
+
+// ⭐ REUSED HERO SECTION IMPORT
+import HeroSection from "../../components/HeroSection";
 
 /* -------------------------------- Animations -------------------------------- */
 const fadeInUp = {
@@ -47,95 +48,18 @@ const HighlightBox = ({ title, desc }) => (
   </motion.div>
 );
 
-/* ---------------------------- Image Container ---------------------------- */
-const ImageContainer = () => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.7 }}
-    viewport={{ once: true }}
-    className="relative w-full h-[380px] lg:h-[500px] overflow-hidden rounded-3xl shadow-lg bg-[#f3f6fb]"
-  >
-    <div
-      className="absolute inset-0 opacity-20"
-      style={{ backgroundImage: "url(/assets/global-map-dots.svg)", backgroundSize: "cover" }}
-    />
-
-    <motion.div
-      initial={{ scale: 1.1 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 6, repeat: Infinity, repeatType: "mirror" }}
-      className="absolute top-4 right-4 w-[68%] h-[48%] rounded-xl overflow-hidden shadow-md"
-    >
-      <Image src="/assets/navbar3.jpg" alt="Team" fill className="object-cover" />
-    </motion.div>
-
-    <motion.div
-      initial={{ scale: 1 }}
-      animate={{ scale: 1.1 }}
-      transition={{ duration: 6, repeat: Infinity, repeatType: "mirror" }}
-      className="absolute bottom-4 left-4 w-[68%] h-[48%] rounded-xl overflow-hidden shadow-md"
-    >
-      <Image src="/assets/navbar4.jpg" alt="Collaboration" fill className="object-cover" />
-    </motion.div>
-  </motion.div>
-);
-
-/* --------------------------- Content Container --------------------------- */
-const ContentContainer = () => (
-  <motion.div variants={stagger} initial="hidden" animate="visible" className="space-y-6">
-    <motion.div variants={fadeInUp} className="space-y-3">
-      <span className="text-sm font-semibold tracking-widest uppercase text-indigo-600">
-        Who We Bring
-      </span>
-      <h1 className="text-4xl font-bold text-gray-900 leading-tight">
-        Delivering Premium
-        <span className="text-indigo-600"> IT Solutions & Services</span>
-      </h1>
-      <p className="text-gray-600 leading-relaxed max-w-lg">
-        Over 20+ years of industry leadership delivering modern IT solutions,
-        software development, and digital transformation.
-      </p>
-    </motion.div>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
-      {["IT Professional Services", "Application Development", "Managed IT Services", "Maintenance & Support"].map((service, i) => (
-        <motion.p key={i} variants={fadeInUp} className="flex items-center gap-2">
-          <span className="text-indigo-600 text-lg">✓</span> {service}
-        </motion.p>
-      ))}
-    </div>
-
-    <motion.button
-      variants={fadeInUp}
-      className="flex items-center justify-center px-8 py-3 text-white font-medium rounded-lg bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 transition-all duration-300 shadow-lg"
-    >
-      More About Us <ChevronRight className="ml-2 w-5 h-5" />
-    </motion.button>
-  </motion.div>
-);
-
-/* --------------------------- Hero Section --------------------------- */
-const HeroSection = () => (
-  <section className="relative min-h-[60vh] flex items-center px-6 py-16 bg-[#f3f6fb]">
-    <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-14 items-center w-full">
-      <div className="lg:col-span-6">
-        <ContentContainer />
-      </div>
-      <div className="lg:col-span-6 flex justify-center lg:justify-end">
-        <ImageContainer />
-      </div>
-    </div>
-  </section>
-);
-
 /* ----------------------------- About Page ----------------------------- */
 export default function About() {
   return (
     <div className="min-h-screen w-full bg-[#f3f6fb] text-black flex flex-col">
       <Navbar />
 
-      <motion.main initial="hidden" animate="visible" variants={fadeIn} className="flex flex-col flex-grow items-center">
+      <motion.main
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        className="flex flex-col flex-grow items-center"
+      >
         {/* Banner */}
         <section className="relative w-full h-[260px] md:h-[360px] flex items-center justify-center text-center overflow-hidden">
           <Image src="/assets/building2.jpg" alt="Office Banner" fill className="object-cover" />
@@ -162,17 +86,16 @@ export default function About() {
           <h2 className="text-3xl font-bold text-indigo-700 tracking-tight">Who We Are</h2>
 
           <p>
-            We deliver future-ready IT solutions that empower businesses to grow, innovate,
-            and scale in the digital-first era.
-          </p>
-          <p>
-            With expertise in cloud, AI, automation, cybersecurity, and system integration,
-            we craft technology that aligns with your long-term goals.
-          </p>
-          <p>
-            Our mission is to transform businesses with strategic IT consulting and modern,
-            sustainable solutions.
-          </p>
+          We are committed to driving innovation and delivering tailored IT solutions that empower businesses to succeed in the digital age. With a team of seasoned experts in technology and consulting, we partner with companies of all sizes to provide solutions that meet their unique needs.</p>
+<p>
+            From strategic consulting and system integration to software development and cloud services, our expertise spans a wide range of industries, allowing us to craft scalable and cost-effective solutions that align with your business goals.
+
+            Our mission is to help businesses embrace the potential of technology to streamline their operations, improve productivity, and achieve sustainable growth.</p>
+<p>
+            We pride ourselves on our customer-centric approach, working closely with you to understand your challenges and opportunities.
+
+            This collaborative method ensures that we deliver customized solutions that not only solve your current issues but also future-proof your organization against upcoming technological trends.
+            </p>
         </motion.div>
 
         <SectionDivider />
@@ -194,19 +117,23 @@ export default function About() {
           className="flex flex-col md:flex-row gap-10 justify-center mb-16 px-8 max-w-4xl text-center"
           viewport={{ once: true }}
         >
-          {["Mr. Joginder Prasad Gupta - Co-founder", "Mrs. Anjali Gupta - Co-founder"].map((name, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="p-6 rounded-xl bg-white shadow-md border border-indigo-100 hover:shadow-xl"
-            >
-              <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
-            </motion.div>
-          ))}
+          {["Mr. Joginder Prasad Gupta - Co-founder", "Mrs. Anjali Gupta - Co-founder"].map(
+            (name, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                className="p-6 rounded-xl bg-white shadow-md border border-indigo-100 hover:shadow-xl"
+              >
+                <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
+              </motion.div>
+            )
+          )}
         </motion.div>
 
+        {/* ⭐ REUSED HERO SECTION BELOW */}
         <HeroSection />
+
         <OurBenefits />
       </motion.main>
 

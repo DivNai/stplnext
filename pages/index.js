@@ -5,6 +5,7 @@ import HeroSection from "../components/HeroSection";
 import Vision from "../components/Vision";
 import WorkingProcess from "../components/WorkingProcess";
 import ServicesGrid from "../components/ServicesGrid";
+import Review from "../components/Review";
 import Digital from "../components/Digital";
 import Footer from "../components/Footer";
 
@@ -18,6 +19,7 @@ export default function HomePage() {
         <HeroSection />
         <Digital />
         <Vision />
+        <Review />
         <WorkingProcess />
       </main>
       <Footer />
