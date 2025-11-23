@@ -1,196 +1,168 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
 
-// Card data
+// ==================== SERVICE DATA ====================
 const cards = [
   {
     image: "/assets/meetingroom3.jpg",
     title: "Customized IT Solutions",
     icon: (
-      <svg className="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24">
-        <rect
-          x="6"
-          y="6"
-          width="12"
-          height="9"
-          rx="2"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path stroke="currentColor" strokeWidth="2" d="M4 18h16" />
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
-    hiddenText:
+    description:
       "Deliver tailored IT consulting services that enhance operational efficiency and accelerate growth, aligned perfectly with unique business needs.",
   },
   {
     image: "/assets/meetingroom1.jpg",
     title: "Comprehensive SAP Services",
     icon: (
-      <svg className="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24">
-        <rect
-          x="4"
-          y="7"
-          width="16"
-          height="10"
-          rx="2"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path stroke="currentColor" strokeWidth="2" d="M9 3v4m6-4v4" />
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
       </svg>
     ),
-    hiddenText:
+    description:
       "Provide end-to-end SAP solutions, from consultation to optimization, ensuring seamless, efficient, and scalable SAP system operations.",
   },
   {
     image: "/assets/meetingroom2.jpg",
     title: "Sustainable Success",
     icon: (
-      <svg className="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24">
-        <rect
-          x="7"
-          y="7"
-          width="10"
-          height="10"
-          rx="2"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path stroke="currentColor" strokeWidth="2" d="M12 3v2m0 14v2" />
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    hiddenText:
+    description:
       "Focus on measurable outcomes through scalable, precise project execution that drives impactful and lasting business growth.",
   },
 ];
 
-// Animation variants
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
-  }),
-};
+// ==================== SERVICE CARD ====================
+const ServiceCard = ({ card, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, { once: true, margin: "-100px" });
+  const controls = useAnimation();
 
-const WideServiceCard = ({ image, title, icon, hiddenText, index }) => {
-  const [hovered, setHovered] = React.useState(false);
+  useEffect(() => {
+    if (isInView) controls.start("visible");
+  }, [isInView]);
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 60, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.7, delay: index * 0.12 },
+    },
+  };
 
   return (
     <motion.div
-      custom={index}
+      ref={cardRef}
       variants={cardVariants}
       initial="hidden"
-      animate="visible"
-      whileHover={{ scale: 1.03 }}
-      transition={{ type: "spring", stiffness: 120, damping: 10 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="relative rounded-2xl overflow-hidden shadow-lg bg-white text-black flex flex-col cursor-pointer group"
+      animate={controls}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group relative h-[480px] rounded-3xl overflow-hidden cursor-pointer shadow-lg"
     >
-      {/* Background Image with opacity transition */}
-      <motion.div className="relative w-full h-64 md:h-96">
+      {/* Background Image */}
+      <motion.div
+        className="absolute inset-0 w-full h-full"
+        animate={{ scale: isHovered ? 1.06 : 1 }}
+        transition={{ duration: 0.4 }}
+      >
+        <div
+          className="w-full h-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${card.image})` }}
+        />
+
+        {/* Dark Overlay on Hover */}
         <motion.div
-          animate={{ opacity: hovered ? 0.75 : 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={image}
-            alt={title}
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover"
-            priority
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* Hover Triangles */}
-      {hovered && (
-        <>
-          <motion.div
-            className="absolute top-0 left-0 w-2/5 h-2/5"
-            style={{
-              clipPath: "polygon(0 0, 100% 0, 0 100%)",
-              background:
-                "linear-gradient(135deg, rgba(30,64,175,0.85), rgba(67,56,202,0.87), rgba(91,33,182,0.9))",
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          />
-
-          <motion.div
-            className="absolute bottom-0 right-0 w-2/5 h-2/5"
-            style={{
-              clipPath: "polygon(100% 100%, 0 100%, 100% 0)",
-              background:
-                "linear-gradient(-45deg, rgba(91,33,182,0.9), rgba(67,56,202,0.87), rgba(30,64,175,0.85))",
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          />
-        </>
-      )}
-
-      {/* Hidden Text - Full width, centered */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="absolute bottom-0 left-0 w-full px-6 py-4 text-center text-base text-black font-medium  z-30"
-      >
-        {hovered && hiddenText}
-      </motion.div>
-
-      {/* Icon and Title */}
-      <motion.div
-        animate={{
-          y: hovered ? -50 : 0,
-          opacity: 1,
-        }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="flex flex-col items-center absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full z-20 text-center text-white"
-      >
-        <div className="flex justify-center items-center rounded-full bg-[#6246ea] w-16 h-16 mb-4 shadow-lg">
-          {icon}
-        </div>
-        <motion.h3
-          animate={{ opacity: hovered ? 0 : 1, y: hovered ? -10 : 0 }}
+          className="absolute inset-0 bg-black/60"
+          animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.4 }}
-          className="text-xl font-semibold text-white drop-shadow"
-        >
-          {title}
-        </motion.h3>
+        />
       </motion.div>
+
+      {/* CONTENT */}
+      <div className="relative h-full flex flex-col justify-between p-8 z-10">
+        {/* ICON */}
+        <motion.div animate={{ y: isHovered ? -6 : 0 }} transition={{ duration: 0.4 }}>
+          <div className="inline-flex p-4 rounded-2xl bg-white/20 backdrop-blur-md border border-white/20 shadow-xl">
+            <div className="text-white">{card.icon}</div>
+          </div>
+        </motion.div>
+
+        {/* TEXT */}
+        <div className="space-y-4">
+          <motion.h3
+            animate={{ y: isHovered ? -6 : 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-3xl font-bold text-white leading-tight"
+          >
+            {card.title}
+          </motion.h3>
+
+          {/* Description */}
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{
+              opacity: isHovered ? 1 : 0,
+              height: isHovered ? "auto" : 0,
+            }}
+            transition={{ duration: 0.4 }}
+            className="overflow-hidden"
+          >
+            <p className="text-white/90 text-base">{card.description}</p>
+          </motion.div>
+        </div>
+      </div>
     </motion.div>
   );
 };
 
+// ==================== MAIN COMPONENT ====================
 export default function WideServiceCards() {
-  return (
-    <section className="w-full bg-[#f3f6fb] py-16 px-4 flex flex-col items-center">
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl font-extrabold text-center text-gray-900 mb-10"
-      >
-        Let's Bring Your <br /> Vision to Life!
-      </motion.h2>
+  const headerRef = useRef(null);
+  const isHeaderInView = useInView(headerRef, { once: true, margin: "-50px" });
 
-      <div className="w-full max-w-screen-xl grid grid-cols-1 md:grid-cols-3 gap-8">
-        {cards.map((card, i) => (
-          <WideServiceCard key={card.title} index={i} {...card} />
-        ))}
+  return (
+    <section className="w-full min-h-screen bg-[#F3F4F6] py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Header */}
+        <motion.div
+          ref={headerRef}
+          initial={{ opacity: 0, y: 40 }}
+          animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9 }}
+          className="text-center mb-16 space-y-4"
+        >
+          <span className="px-4 py-2 rounded-full bg-blue-600 text-white text-sm shadow-md">
+            Our Services
+          </span>
+
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0A0F1F] leading-tight">
+            Let's Bring Your<br />Vision to Life
+          </h2>
+
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Transform your business with our cutting-edge solutions
+          </p>
+        </motion.div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {cards.map((card, index) => (
+            <ServiceCard key={card.title} card={card} index={index} />
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -53,13 +53,23 @@ const Review = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          {/* LEFT IMAGES — hidden on mobile/tablet */}
+          {/* LEFT IMAGE STACK */}
           <div className="relative hidden lg:block">
-            <div className="relative z-10">
-              <div className="w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl mb-6 bg-gray-200 h-[350px]"></div>
+            {/* Top Image */}
+            <div className="relative z-10 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl mb-6">
+              <img
+                src="/assets/review2.jpg"    // ← Replace with your own image
+                alt="client-1"
+                className="w-full h-[350px] object-cover"/>
             </div>
 
-            <div className="absolute bottom-0 right-10 w-64 rounded-3xl overflow-hidden shadow-2xl bg-gray-200 h-[250px] z-20"></div>
+            {/* Bottom Image */}
+            <div className="absolute bottom-0 right-10 w-64 rounded-3xl overflow-hidden shadow-2xl z-20">
+              <img
+                src="/assets/review1.jpg"    // ← Replace with your own image
+                alt="client-2"
+                className="w-full h-[250px] object-cover"/>
+            </div>
           </div>
 
           {/* RIGHT CONTENT */}
@@ -121,7 +131,7 @@ const Review = () => {
           </div>
         </div>
 
-        {/* PARTNERS */}
+        {/* PARTNERS ROW */}
         <div className="border-t border-gray-200 pt-6 pb-2 mt-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 items-center justify-items-center">
             {partners.map((partner, index) => (

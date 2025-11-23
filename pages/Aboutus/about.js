@@ -5,26 +5,12 @@ import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import OurBenefits from "../../components/OurBenefits";
-import { ChevronRight } from "lucide-react";
-
-// ⭐ REUSED HERO SECTION IMPORT
 import HeroSection from "../../components/HeroSection";
 
 /* -------------------------------- Animations -------------------------------- */
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-};
-
 const fadeIn = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1 } },
-};
-
-const stagger = {
-  visible: {
-    transition: { staggerChildren: 0.15 },
-  },
 };
 
 /* ---------------------------- Decorative Divider ---------------------------- */
@@ -60,10 +46,18 @@ export default function About() {
         variants={fadeIn}
         className="flex flex-col flex-grow items-center"
       >
-        {/* Banner */}
+
+        {/* ⭐ UPDATED BANNER */}
         <section className="relative w-full h-[260px] md:h-[360px] flex items-center justify-center text-center overflow-hidden">
-          <Image src="/assets/building2.jpg" alt="Office Banner" fill className="object-cover" />
-          <div className="absolute inset-0 bg-black/20 backdrop-blur-[0.5px]" />
+          <Image
+            src="/assets/building2.jpg"
+            alt="Office Banner"
+            fill
+            className="object-cover"
+          />
+
+          {/* ⚡ Higher opacity for better text readability */}
+          <div className="absolute inset-0 bg-black/60" />
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -86,21 +80,20 @@ export default function About() {
           <h2 className="text-3xl font-bold text-indigo-700 tracking-tight">Who We Are</h2>
 
           <p>
-          We are committed to driving innovation and delivering tailored IT solutions that empower businesses to succeed in the digital age. With a team of seasoned experts in technology and consulting, we partner with companies of all sizes to provide solutions that meet their unique needs.</p>
-<p>
-            From strategic consulting and system integration to software development and cloud services, our expertise spans a wide range of industries, allowing us to craft scalable and cost-effective solutions that align with your business goals.
+            We are committed to driving innovation and delivering tailored IT solutions that empower businesses to succeed in the digital age. With a team of seasoned experts in technology and consulting, we partner with companies of all sizes to provide solutions that meet their unique needs.<br/>
 
-            Our mission is to help businesses embrace the potential of technology to streamline their operations, improve productivity, and achieve sustainable growth.</p>
-<p>
-            We pride ourselves on our customer-centric approach, working closely with you to understand your challenges and opportunities.
+            From strategic consulting and system integration to software development and cloud services, our expertise spans a wide range of industries, allowing us to craft scalable and cost-effective solutions that align with your business goals.<br/>
+
+            Our mission is to help businesses embrace the potential of technology to streamline their operations, improve productivity, and achieve sustainable growth.
+
+            We pride ourselves on our customer-centric approach, working closely with you to understand your challenges and opportunities.<br/>
 
             This collaborative method ensures that we deliver customized solutions that not only solve your current issues but also future-proof your organization against upcoming technological trends.
-            </p>
+          </p>
         </motion.div>
 
         <SectionDivider />
 
-        {/* Highlight Boxes */}
         <div className="grid md:grid-cols-3 gap-6 px-6 max-w-6xl">
           <HighlightBox title="20+ Years Experience" desc="Building reliable digital ecosystems for global businesses." />
           <HighlightBox title="Trusted Technology Partner" desc="Delivering scalable and customer-focused solutions." />
@@ -109,7 +102,6 @@ export default function About() {
 
         <SectionDivider />
 
-        {/* Founders */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -131,9 +123,7 @@ export default function About() {
           )}
         </motion.div>
 
-        {/* ⭐ REUSED HERO SECTION BELOW */}
         <HeroSection />
-
         <OurBenefits />
       </motion.main>
 
