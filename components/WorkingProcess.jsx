@@ -96,44 +96,6 @@ export default function WorkingProcess() {
               {/* Title & Description */}
               <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
               <p className="text-black/80 text-base">{step.description}</p>
-
-              {/* Curved Animated Arrow (except last one) */}
-              {i < steps.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  viewport={{ once: true }}
-                  className="hidden md:block absolute top-[110px] right-[-90px]"
-                >
-                  <motion.svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 120 60"
-                    width="90"
-                    height="60"
-                    fill="none"
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <path
-                      d="M2 30C30 10 90 10 118 30"
-                      stroke="#7A6CF6"
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M118 30L104 20M118 30L104 40"
-                      stroke="#7A6CF6"
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                    />
-                  </motion.svg>
-                </motion.div>
-              )}
             </motion.div>
           ))}
         </div>

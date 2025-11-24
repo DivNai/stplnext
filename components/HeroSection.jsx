@@ -2,6 +2,9 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+/* ---------------------------------------------------
+   ▶️ ANIMATION VARIANTS
+--------------------------------------------------- */
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -51,7 +54,7 @@ const ImageContainer = () => (
 );
 
 /* ---------------------------------------------------
-   ▶️ CONTENT BLOCK
+   ▶️ CONTENT BLOCK (Updated with Left-Aligned Pointers)
 --------------------------------------------------- */
 const ContentContainer = () => (
   <motion.div
@@ -72,16 +75,16 @@ const ContentContainer = () => (
       </p>
     </motion.div>
 
-    {/* Service List Groups */}
+    {/* Service Groups */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-700">
 
-      {/* IT PROFESSIONAL SERVICES */}
+      {/* GROUP 1 — IT Professional Services */}
       <div className="space-y-4">
         <motion.h3
           variants={itemVariants}
           className="font-bold text-xl text-indigo-600"
         >
-          IT Professional Services
+          IT Consulting & Solutions
         </motion.h3>
 
         {[
@@ -93,15 +96,15 @@ const ContentContainer = () => (
           <motion.p
             key={i}
             variants={itemVariants}
-            className="flex items-start space-x-2 text-base"
+            className="flex items-start gap-2 text-base text-left"
           >
-            <span className="text-indigo-500 text-lg mt-1">✓</span>
-            <span>{text}</span>
+            <span className="text-indigo-600 text-lg leading-5">✓</span>
+            <span className="leading-5">{text}</span>
           </motion.p>
         ))}
       </div>
 
-      {/* SUPPORT & MANAGEMENT SERVICES */}
+      {/* GROUP 2 — Support & Management */}
       <div className="space-y-4">
         <motion.h3
           variants={itemVariants}
@@ -118,15 +121,16 @@ const ContentContainer = () => (
           <motion.p
             key={i}
             variants={itemVariants}
-            className="flex items-start space-x-2 text-base"
+            className="flex items-start gap-2 text-base text-left"
           >
-            <span className="text-indigo-500 text-lg mt-1">✓</span>
-            <span>{text}</span>
+            <span className="text-indigo-600 text-lg leading-5">✓</span>
+            <span className="leading-5">{text}</span>
           </motion.p>
         ))}
       </div>
     </div>
 
+    {/* Footer Text */}
     <motion.p
       variants={itemVariants}
       className="text-gray-500 max-w-xl text-sm pt-2"

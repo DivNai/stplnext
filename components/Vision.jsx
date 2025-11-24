@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 // ==================== SERVICE DATA ====================
 const cards = [
@@ -43,30 +43,20 @@ const cards = [
 // ==================== SERVICE CARD ====================
 const ServiceCard = ({ card, index }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true, margin: "-100px" });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) controls.start("visible");
-  }, [isInView]);
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 60, scale: 0.9 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.7, delay: index * 0.12 },
+      transition: { duration: 0.4, delay: index * 0.05 },
     },
   };
 
   return (
     <motion.div
-      ref={cardRef}
       variants={cardVariants}
-      initial="hidden"
-      animate={controls}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="group relative h-[480px] rounded-3xl overflow-hidden cursor-pointer shadow-lg"
@@ -129,19 +119,15 @@ const ServiceCard = ({ card, index }) => {
 
 // ==================== MAIN COMPONENT ====================
 export default function WideServiceCards() {
-  const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: "-50px" });
-
   return (
     <section className="w-full min-h-screen bg-[#F3F4F6] py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
         <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16 space-y-4"
         >
           <span className="px-4 py-2 rounded-full bg-blue-600 text-white text-sm shadow-md">
@@ -149,7 +135,7 @@ export default function WideServiceCards() {
           </span>
 
           <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0A0F1F] leading-tight">
-            Let's Bring Your<br />Vision to Life
+            Let us Bring Your<br />Vision to Life
           </h2>
 
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -158,11 +144,15 @@ export default function WideServiceCards() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
           {cards.map((card, index) => (
             <ServiceCard key={card.title} card={card} index={index} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -10,12 +10,12 @@ import Footer from "../../components/Footer";
 const services = [
   {
     title: "SAP Services",
-    text: "At StepLoops Technology Pvt Ltd, our SAP Services are designed to support every aspect of your enterprise resource planning needs, ensuring that your SAP environment operates seamlessly and effectively. Our services encompass a wide range of solutions, starting from initial consultation where we assess your current systems and identify areas for improvement. We then move on to system design, where we develop a comprehensive strategy that addresses your unique business requirements. Our team manages the entire implementation process, ensuring a smooth transition to SAP systems while minimizing disruptions to your daily operations. Post-implementation, we provide ongoing maintenance and optimization services to ensure that your SAP environment remains up-to-date and continues to deliver optimal performance. Our experts are well-versed in tackling complex challenges and are dedicated to enhancing the scalability and efficiency of your SAP systems. From initial consultation and system design to ongoing maintenance and optimization, we provide end-to-end support for your SAP environment. Trust us to be your dedicated partner in maximizing the value of your SAP investment and ensuring your systems operate at peak efficiency.",
+    text: "StepLoops Technology Pvt. Ltd. offers end-to-end SAP services that streamline and scale your enterprise operations. We begin with an in-depth consultation to assess your current systems and design a tailored SAP strategy. Our team manages the full implementation with minimal disruption and continues to provide ongoing maintenance, updates, and optimization to keep your environment secure and efficient. With experienced SAP professionals, we help you overcome complex challenges, enhance performance, and maximize the value of your SAP investment.",
     image: "/assets/meetingroom2.jpg",
   },
   {
     title: "SAP Solutions",
-    text: "Our SAP Solutions are meticulously crafted to streamline your business processes, enhance operational efficiency, and drive strategic growth. We understand that each organization has unique needs, which is why we offer a range of SAP services tailored to fit your specific requirements. Our certified SAP consultants bring a wealth of experience to the table, working collaboratively with your team to integrate SAP solutions that not only meet but exceed your expectations. This comprehensive approach allows us to deliver systems that provide greater visibility into your operations, improve control over processes, and offer the agility needed to adapt to ever-changing market conditions.",
+    text: "Our SAP Solutions are thoughtfully designed to simplify your business processes, boost operational efficiency, and support long-term strategic growth. Every organization has its own set of challenges and objectives, which is why we provide fully customized SAP services tailored to your unique requirements.Our certified SAP consultants bring extensive industry expertise and work closely with your team to implement solutions that not only align with your goals but also elevate your business performance. Through this collaborative and comprehensive approach, we deliver systems that enhance visibility across your operations, strengthen process control, and enable the agility needed to stay competitive in a rapidly evolving market.",
     image: "/assets/meetingroom3.jpg",
   },
   {
@@ -25,12 +25,12 @@ const services = [
   },
   {
     title: "Web Development",
-    text: "Our Web Development services are dedicated to creating highly functional, aesthetically pleasing, and responsive websites that enhance your online presence and drive user engagement. We offer a comprehensive range of web development solutions, including front-end development that focuses on intuitive and visually appealing interfaces, and back-end development that ensures robust performance and seamless integration with your existing systems.",
+    text: "We build websites that convert visitors into customers. Our development expertise combines stunning design with powerful functionality—creating fast, responsive, and intuitive web experiences that elevate your brand and drive real business results.From pixel-perfect interfaces to rock-solid backend architecture, we deliver complete web solutions that scale with your ambitions.",
     image: "/assets/web dev.jpg",
   },
   {
     title: "Training and Recruitment",
-    text: "Our Training and Recruitment services are designed to empower your organization with the skills and talent necessary for achieving success in a competitive market. We offer training programs that cover essential IT and business topics, ensuring your team is equipped with the latest skills. Our recruitment process ensures you get candidates who align with your project needs and company culture.",
+    text: "Our Training and Recruitment services empower your organization with the right skills and talent to excel in today’s competitive landscape. We offer industry-focused training programs covering essential IT and business domains, ensuring your team stays updated with the latest tools and technologies. Alongside this, our strategic recruitment process identifies and delivers candidates who not only meet your technical requirements but also align seamlessly with your company culture. With our support, you build a workforce that is skilled, agile, and ready to drive meaningful growth.",
     image: "/assets/training1.jpg",
   },
   {

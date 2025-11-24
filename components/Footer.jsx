@@ -105,16 +105,7 @@ const Footer = () => {
 
         {/* Copyright LEFT aligned */}
         <p className="text-white/70 text-sm">© 2025 StepLoops</p>
-
-        {/* Back to Top Button */}
-        <motion.button
-          className="fixed bottom-10 right-10 w-14 h-14 rounded-full bg-[#98A3D1] 
-          flex justify-center items-center shadow-lg text-2xl text-white"
-          whileHover={{ scale: 1.1 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          ↑
-        </motion.button>
+        
       </div>
     </footer>
   );

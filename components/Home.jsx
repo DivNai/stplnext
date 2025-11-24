@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -68,23 +68,43 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [current]);
 
-  /* ---------- Typewriter Text Logic ---------- */
+  /* ---------- Typewriter Scroll-Triggered Logic ---------- */
   const fullText = `BRIGHT MINDS,
 BOLDER INNOVATIONS.`;
 
   const [displayedText, setDisplayedText] = useState("");
+  const homeRef = useRef(null);
+
   useEffect(() => {
-    let index = 0;
-    const typing = setInterval(() => {
-      setDisplayedText(fullText.slice(0, index));
-      index++;
-      if (index > fullText.length) clearInterval(typing);
-    }, 60); // typing speed here
-    return () => clearInterval(typing);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Restart typing animation
+          let index = 0;
+          setDisplayedText("");
+          const typing = setInterval(() => {
+            setDisplayedText(fullText.slice(0, index));
+            index++;
+            if (index > fullText.length) clearInterval(typing);
+          }, 50);
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (homeRef.current) {
+      observer.observe(homeRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[100vh] overflow-hidden flex items-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24">
+    <div
+      ref={homeRef}
+      className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[80vh] 
+      overflow-hidden flex items-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24"
+    >
       {/* Animate old image out */}
       <AnimatePresence>
         {prev !== null && prev !== current && (
@@ -127,13 +147,12 @@ BOLDER INNOVATIONS.`;
 
       {/* ---------- Main Content ---------- */}
       <div className="relative z-20 text-left max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl pl-2 sm:pl-6 md:pl-10">
-        
         {/* TYPEWRITER HEADING */}
         <motion.h1
-          className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mb-3 whitespace-pre-line drop-shadow-xl"
+          className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
+          font-extrabold leading-snug mb-3 whitespace-pre-line drop-shadow-xl"
         >
           {displayedText}
-          <span className="text-indigo-400 animate-pulse">|</span>
         </motion.h1>
 
         <p className="text-white text-sm sm:text-base md:text-lg mb-6 max-w-md drop-shadow">
@@ -145,7 +164,9 @@ BOLDER INNOVATIONS.`;
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.push("/Aboutus/about")}
-          className="inline-block bg-gradient-to-r from-indigo-500 to-blue-400 text-white text-sm sm:text-base px-5 sm:px-7 md:px-8 py-2 sm:py-3 rounded-lg shadow-md hover:opacity-90 transition"
+          className="inline-block bg-gradient-to-r from-indigo-500 to-blue-400 
+          text-white text-sm sm:text-base px-5 sm:px-7 md:px-8 py-2 sm:py-3 rounded-lg 
+          shadow-md hover:opacity-90 transition"
         >
           WHO WE ARE →
         </motion.button>
