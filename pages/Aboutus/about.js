@@ -95,7 +95,7 @@ export default function About() {
         <SectionDivider />
 
         <div className="grid md:grid-cols-3 gap-6 px-6 max-w-6xl">
-          <HighlightBox title="20+ Years Experience" desc="Building reliable digital ecosystems for global businesses." />
+          <HighlightBox title="Our Expertise" desc="We work in SAP , Web developments, CRM and many more" />
           <HighlightBox title="Trusted Technology Partner" desc="Delivering scalable and customer-focused solutions." />
           <HighlightBox title="Future-Driven Vision" desc="We combine innovation with business strategy to create impact." />
         </div>
