@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
 // Icons
@@ -11,11 +11,17 @@ const ProcessIcon = () => <span className="text-3xl">💼</span>;
 
 // Animation Variants
 const cardVariants = {
-  initial: { opacity: 1, y: 0 },
-  hover: {
-    scale: 1.02,
-    transition: { duration: 0.15 },
-  },
+  initial: { opacity: 0, y: 20 },
+  animate: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: i * 0.1,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+  hover: { scale: 1.02, transition: { duration: 0.15 } },
 };
 
 const overlayVariants = {
@@ -29,8 +35,8 @@ const imageVariants = {
 };
 
 const textVariants = {
-  initial: { color: "#000", y: 0 },
-  hover: { color: "#fff", y: -3 },
+  initial: { color: "#000000", y: 0 },
+  hover: { color: "#ffffff", y: -3 },
 };
 
 const iconVariants = {
@@ -40,27 +46,23 @@ const iconVariants = {
 
 // Service Card Component
 const ServiceCard = ({ title, description, icon, image, index }) => {
-  const [active, setActive] = useState(false);
   const anchor = `/Testimonials/Testimonial#${title.split(" ").join("-")}`;
-
-  const triggerHover = active ? "hover" : "initial";
 
   return (
     <motion.a
       href={anchor}
-      className="relative bg-[#f3f6fb] h-full flex flex-col justify-between overflow-hidden cursor-pointer touch-none"
+      className="relative bg-[#f3f6fb] h-full flex flex-col justify-between overflow-hidden cursor-pointer"
       variants={cardVariants}
       initial="initial"
-      animate={triggerHover}
+      animate="animate"
+      custom={index}
       whileHover="hover"
-      whileTap="hover"
-      onTouchStart={() => setActive(true)}
-      onTouchEnd={() => setActive(false)}
     >
       {/* Hover Overlay */}
       <motion.div
         className="absolute inset-0 z-10 pointer-events-none"
         variants={overlayVariants}
+        transition={{ duration: 0.25 }}
       >
         {image && (
           <motion.img
@@ -68,15 +70,17 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
             alt={title}
             className="absolute inset-0 w-full h-full object-cover"
             variants={imageVariants}
+            transition={{ duration: 0.25 }}
           />
         )}
 
-        {/* Triangles */}
+        {/* Decorative Triangles */}
         <motion.div
           className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-600 to-violet-600"
           style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
           animate={{ x: "-100%", y: "-100%" }}
           whileHover={{ x: 0, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         />
 
         <motion.div
@@ -84,6 +88,7 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
           style={{ clipPath: "polygon(100% 100%, 0 100%, 100% 0)" }}
           animate={{ x: "100%", y: "100%" }}
           whileHover={{ x: 0, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         />
       </motion.div>
 
@@ -92,16 +97,21 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
         {icon}
       </motion.div>
 
-      {/* Text */}
+      {/* Text Section */}
       <motion.div className="relative z-20 p-4">
         <motion.h3
           className="text-lg font-semibold mb-1"
           variants={textVariants}
+          transition={{ duration: 0.2 }}
         >
           {title}
         </motion.h3>
 
-        <motion.p className="text-sm leading-relaxed" variants={textVariants}>
+        <motion.p
+          className="text-sm leading-relaxed"
+          variants={textVariants}
+          transition={{ duration: 0.2 }}
+        >
           {description}
         </motion.p>
       </motion.div>
@@ -141,6 +151,7 @@ const servicesData = [
   },
 ];
 
+// Grid Component
 const ServicesGrid = () => (
   <section className="w-full bg-white border-b border-gray-300">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
@@ -151,4 +162,4 @@ const ServicesGrid = () => (
   </section>
 );
 
-export default ServicesGrid;
+export default ServicesGrid; 
