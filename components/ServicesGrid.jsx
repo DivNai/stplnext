@@ -122,30 +122,30 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
 // Services
 const servicesData = [
   {
-    title: "SAP Services",
+    title: "SAP Innovation",
     description:
-      "Integrated enterprise-wide SAP solutions designed to optimize and scale business operations.",
+      "Driving intelligent transformation through SAP-powered innovation.Empowering businesses to operate smarter, faster, and with greater precision.",
     icon: <TechIcon />,
     image: "/assets/service1.jpg",
   },
   {
-    title: "Mobile Development",
+    title: "Mobile and Web Development",
     description:
-      "High-performance mobile applications built for speed, scalability, and great UX.",
+      "High-performance mobile applications engineered for speed and reliability.Built to deliver seamless, intuitive, and exceptional user experiences.",
     icon: <CloudIcon />,
     image: "/assets/mobile dev.jpg",
   },
   {
     title: "Training and Recruitment",
     description:
-      "Empowering teams with specialized IT and business training programs.",
+      "Empowering teams with practical IT and business training to strengthen performance and enable sustained organizational success.",
     icon: <SoftwareIcon />,
     image: "/assets/service3.jpg",
   },
   {
     title: "Custom Software Development",
     description:
-      "Tailored software solutions aligned perfectly with your business workflows.",
+      "Designed to enhance efficiency, accelerate growth, and enable smarter operations.",
     icon: <ProcessIcon />,
     image: "/assets/service4.jpg",
   },

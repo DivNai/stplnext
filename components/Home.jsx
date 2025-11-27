@@ -69,8 +69,8 @@ const Home = () => {
   }, [current]);
 
   /* ---------- Typewriter Scroll-Triggered Logic ---------- */
-  const fullText = `BRIGHT MINDS,
-BOLDER INNOVATIONS.`;
+  const fullText = `Driven by expertise , 
+  Defined by innovation .`;
 
   const [displayedText, setDisplayedText] = useState("");
   const homeRef = useRef(null);
@@ -156,8 +156,7 @@ BOLDER INNOVATIONS.`;
         </motion.h1>
 
         <p className="text-white text-sm sm:text-base md:text-lg mb-6 max-w-md drop-shadow">
-          Empowering businesses with cutting-edge IT, digital, and technology
-          services to drive innovation and growth.
+          Delivering cutting-edge IT, digital, and technology services to drive strategic innovation and business growth.
         </p>
 
         <motion.button

@@ -88,10 +88,11 @@ const ContentContainer = () => (
         </motion.h3>
 
         {[
-          "Software Development: Build custom software, web apps, and mobile apps.",
-          "Cloud Computing: Migrate businesses to the cloud and manage scalable cloud infrastructure.",
-          "Cybersecurity: Protect systems with security tools, threat detection, and incident response.",
-          "IT Consulting: Guide businesses on tech strategies, upgrades, data management, and adopting new technologies like AI or blockchain.",
+         "Software Development: Custom software, web apps, and mobile applications built to fit business needs.",
+         "Cloud Computing: Secure, scalable cloud migration and infrastructure management.",
+         "Cybersecurity: Advanced protection with security tools, threat detection, and incident response.",
+         "IT Consulting: Strategic guidance on tech upgrades, data management, and emerging technologies like AI and blockchain.",
+         "SAP Implementation & BTP: Seamless SAP deployment with BTP-driven automation and scalable digital innovation.",
         ].map((text, i) => (
           <motion.p
             key={i}
@@ -114,9 +115,15 @@ const ContentContainer = () => (
         </motion.h3>
 
         {[
-          "Managed IT Support: Provide remote/on-site support, monitoring, maintenance, and help desk services.",
-          "Data Management & Analytics: Manage databases, backups, dashboards, and business intelligence tools.",
-          "DevOps: Automate CI/CD pipelines and streamline development and IT operations for faster delivery.",
+          "Managed IT Support: Comprehensive remote/on-site support, monitoring, maintenance services.",
+
+          "Data Management: Efficient database management and secure backups.",
+
+          "DevOps: Automated CI/CD pipelines and streamlined development workflows for reliable delivery.",
+
+          "Quality Assurance & Testing: End-to-end software testing to ensure performance, security and reliability.",
+
+          "IT Infrastructure Management: Proactive management of servers, networks, and systems to ensure seamless operations.",
         ].map((text, i) => (
           <motion.p
             key={i}
