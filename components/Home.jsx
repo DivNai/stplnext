@@ -1,72 +1,11 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
-const images = ["/assets/building2.jpg", "/assets/homepage1.jpg"];
-
-/* ---------- Background Variants (unchanged) ---------- */
-const getVariants = (dir, type) =>
-  dir === 0
-    ? type === "enter"
-      ? {
-          initial: { opacity: 0, x: -120, scale: 1.1 },
-          animate: {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] },
-          },
-          exit: {},
-        }
-      : {
-          initial: {},
-          animate: {},
-          exit: {
-            opacity: 0,
-            x: 120,
-            scale: 0.98,
-            transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] },
-          },
-        }
-    : type === "enter"
-    ? {
-        initial: { opacity: 0, y: 120, scale: 1.1 },
-        animate: {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] },
-        },
-        exit: {},
-      }
-    : {
-        initial: {},
-        animate: {},
-        exit: {
-          opacity: 0,
-          y: -120,
-          scale: 0.98,
-          transition: { duration: 2, ease: [0.4, 0.5, 0.2, 1] },
-        },
-      };
-
 const Home = () => {
-  const [current, setCurrent] = useState(0);
-  const [prev, setPrev] = useState(null);
-  const [direction, setDirection] = useState(0);
   const router = useRouter();
-
-  /* ---------- Background Auto Switch Logic ---------- */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPrev(current);
-      setCurrent((old) => (old === 0 ? 1 : 0));
-      setDirection((old) => (old === 0 ? 1 : 0));
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [current]);
 
   /* ---------- Typewriter Scroll-Triggered Logic ---------- */
   const fullText = `Driven by expertise , 
@@ -79,9 +18,9 @@ const Home = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          // Restart typing animation
           let index = 0;
           setDisplayedText("");
+
           const typing = setInterval(() => {
             setDisplayedText(fullText.slice(0, index));
             index++;
@@ -92,54 +31,24 @@ const Home = () => {
       { threshold: 0.4 }
     );
 
-    if (homeRef.current) {
-      observer.observe(homeRef.current);
-    }
-
+    if (homeRef.current) observer.observe(homeRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
     <div
       ref={homeRef}
-      className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[80vh] 
-      overflow-hidden flex items-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24"
+      className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[85vh] 
+      flex items-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24 overflow-hidden"
     >
-      {/* Animate old image out */}
-      <AnimatePresence>
-        {prev !== null && prev !== current && (
-          <motion.div
-            key={`prev-${prev}`}
-            className="absolute inset-0 w-full h-full z-0"
-            style={{
-              backgroundImage: `url(${images[prev]})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-            initial="animate"
-            animate="animate"
-            exit="exit"
-            variants={getVariants(direction, "exit")}
-            onAnimationComplete={() => setPrev(null)}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Animate new image in */}
-      <motion.div
-        key={`current-${current}`}
-        className="absolute inset-0 w-full h-full z-0"
-        style={{
-          backgroundImage: `url(${images[current]})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-        variants={getVariants(direction, "enter")}
-        initial="initial"
-        animate="animate"
-        exit="exit"
+      {/* ---------- BACKGROUND VIDEO ---------- */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src="/assets/hero.mp4" // replace with your video file
       />
 
       {/* Dark Overlay */}
@@ -147,7 +56,7 @@ const Home = () => {
 
       {/* ---------- Main Content ---------- */}
       <div className="relative z-20 text-left max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl pl-2 sm:pl-6 md:pl-10">
-        {/* TYPEWRITER HEADING */}
+        {/* Typewriter Heading */}
         <motion.h1
           className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
           font-extrabold leading-snug mb-3 whitespace-pre-line drop-shadow-xl"
@@ -155,10 +64,13 @@ const Home = () => {
           {displayedText}
         </motion.h1>
 
+        {/* Subtitle */}
         <p className="text-white text-sm sm:text-base md:text-lg mb-6 max-w-md drop-shadow">
-          Delivering cutting-edge IT, digital, and technology services to drive strategic innovation and business growth.
+          Delivering cutting-edge IT, digital, and technology services to drive 
+          strategic innovation and business growth.
         </p>
 
+        {/* CTA Button */}
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

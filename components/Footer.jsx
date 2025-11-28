@@ -1,78 +1,95 @@
 "use client";
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
+  const router = useRouter();
+
+  // 👉 Redirect to Testimonial.jsx page
+  const handleContactClick = () => {
+    router.push("/contact");
+  };
+
   return (
-    <footer
-      className="relative z-10 pt-20 pb-6 text-white overflow-hidden"
-      style={{
-        backgroundImage: "url('/assets/footer.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center top -140px", // More cropped
-        backgroundRepeat: "no-repeat",
-        height: "auto",
-      }}
-    >
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-[#17182d]/80 -z-10"></div>
+    <footer className="relative bg-[#0B0E1A] text-white pt-20 pb-6">
 
-      <div className="max-w-7xl mx-auto px-6 relative">
-        {/* ===== GET IN TOUCH BUTTON ===== */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center"
-        >
-          <Link href="/contact">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-r from-[#4f38ea] to-[#98A3D1] px-7 py-2.5 
-              rounded-xl font-semibold text-white shadow-lg mb-10"
-            >
-              GET IN TOUCH →
-            </motion.button>
-          </Link>
-        </motion.div>
+      {/* ===== TOP CTA BAR ===== */}
+      <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-[92%] md:w-[85%]">
+        <div className="bg-gradient-to-r from-[#7A6CF6] to-[#4f38ea] px-6 py-4 rounded-lg shadow-lg flex flex-col md:flex-row items-center justify-between">
+          <h3 className="text-lg font-semibold">Ready for a next project?</h3>
 
-        {/* ===== MAIN FOOTER GRID (Height Reduced) ===== */}
-        <div className="flex flex-col md:flex-row justify-between items-start pt-4">
-          {/* Logo + Description */}
-          <div className="md:w-1/4 w-full mb-8">
-            <img
-              alt="logo"
-              src="/assets/logo-crop.png"
-              className="h-10 mb-3"
-            />
+          <button
+            onClick={handleContactClick}
+            className="mt-3 md:mt-0 bg-[#1A1A1A] hover:bg-black text-white px-5 py-2 rounded-md transition shadow-md"
+          >
+            Contact us
+          </button>
+        </div>
+      </div>
 
-            <p className="text-white/80 text-sm leading-relaxed">
-              We provide the best Information Technology solutions including
-              hardware, software & networking.
+      {/* ===== MAIN FOOTER ===== */}
+      <div className="max-w-7xl mx-auto px-6 mt-20">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+          {/* Column 1: Logo + About */}
+          <div>
+            <img src="/assets/logo-crop.png" alt="logo" className="h-10 mb-4" />
+            <p className="text-sm text-white/80 leading-relaxed">
+              We provide top-tier IT solutions including hardware, software,
+              networking, and digital services.
             </p>
           </div>
 
-          {/* Company Links */}
-          <div className="md:w-1/4 w-full mb-8">
-            <h3 className="font-bold mb-4 text-lg">Company</h3>
-            <ul className="space-y-2 text-white/80 text-sm">
-              <li><a href="#">About Company</a></li>
-              <li><a href="#">For Customers</a></li>
-              <li><a href="#">Blog & News</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Sitemap</a></li>
+          {/* Column 2: Company Links */}
+          <div>
+            <h3 className="font-bold mb-3 text-base">Company</h3>
+            <ul className="space-y-2 text-white/70 text-sm">
+              <li><Link href="#">About us</Link></li>
+              <li><Link href="#">Careers</Link></li>
+              <li><Link href="#">Contact us</Link></li>
             </ul>
           </div>
 
-          {/* Contact */}
-          <div className="md:w-1/4 w-full">
-            <h3 className="font-bold mb-4 text-lg">Contact Us</h3>
+          {/* Column 3: Social Icons */}
+          <div>
+            <h3 className="font-bold mb-3 text-base">Follow us</h3>
+
+            <div className="flex space-x-5 text-xl">
+              <a
+                href="https://instagram.com/steploops_technologies/"
+                target="_blank"
+                className="hover:text-[#E1306C] transition"
+              >
+                <i className="fab fa-instagram"></i>
+              </a>
+
+              <a
+                href="https://linkedin.com/company/steploops-technologies-pvt-ltd/"
+                target="_blank"
+                className="hover:text-[#0077B5] transition"
+              >
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+
+              <a
+                href="https://discord.com"
+                target="_blank"
+                className="hover:text-[#5865F2] transition"
+              >
+                <i className="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+
+          {/* Column 4: Contact info */}
+          <div>
+            <h3 className="font-bold mb-3 text-base">Contact Us</h3>
 
             <div className="mb-3 text-sm">
-              <span className="text-white/80">Need help? Call us</span>
+              <span className="text-white/80 block">Need help? Call us</span>
               <a
                 href="tel:+919634701727"
-                className="text-[#34a6ff] font-semibold block"
+                className="text-[#34a6ff] font-semibold"
               >
                 +91 9634701727
               </a>
@@ -80,32 +97,18 @@ const Footer = () => {
 
             <a
               href="mailto:info@steploops.com"
-              className="text-white/80 text-sm block mb-5"
+              className="text-white/80 text-sm block"
             >
               info@steploops.com
             </a>
-
-            {/* Social Icons */}
-            <div className="flex space-x-5 text-xl">
-              <a className="hover:text-[#E1306C]" target="_blank">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a className="hover:text-[#0077B5]" target="_blank">
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-              <a className="hover:text-[#5865F2]" target="_blank">
-                <i className="fab fa-discord"></i>
-              </a>
-            </div>
           </div>
+
         </div>
 
-        {/* White Divider */}
-        <div className="w-full h-px bg-white/40 mt-8 mb-3"></div>
+        {/* Divider */}
+        <div className="w-full h-px bg-white/20 mt-8 mb-3"></div>
 
-        {/* Copyright LEFT aligned */}
-        <p className="text-white/70 text-sm">© 2025 StepLoops</p>
-        
+        <p className="text-white/60 text-sm">Copyright © Steploops Technologies Pvt. Ltd. All rights reserved</p>
       </div>
     </footer>
   );

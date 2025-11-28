@@ -19,10 +19,7 @@ export default function Contact() {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-
-  // ✅ FIXED phone state
   const [phone, setPhone] = useState("");
-
   const [email, setEmail] = useState("");
   const [product, setProduct] = useState("");
   const [jobRole, setJobRole] = useState("");
@@ -46,9 +43,7 @@ export default function Contact() {
     formData.append("phone", phone);
     formData.append("message", message);
 
-    if (category === "review") {
-      formData.append("product", product);
-    }
+    if (category === "review") formData.append("product", product);
 
     if (category === "work") {
       formData.append("jobRole", jobRole);
@@ -96,7 +91,7 @@ export default function Contact() {
     <>
       <Navbar />
 
-      {/* HERO */}
+      {/* FULL-WIDTH HERO */}
       <section className="relative w-full h-[250px] md:h-[350px] flex flex-col justify-center items-center text-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
@@ -121,35 +116,59 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* CONTACT MAIN */}
-      <section className="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start bg-white text-black">
-        {/* LEFT INFO */}
+      {/* FULL WIDTH CONTENT SECTION */}
+      <section className="w-full py-20 px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-start bg-white text-black">
+
+        {/* LEFT INFORMATION PANEL */}
         <motion.div
           initial="hidden"
           whileInView="show"
           variants={fadeUp}
-          className="space-y-6"
+          className="space-y-6 w-full"
         >
           <h5 className="text-[#7A6CF6] text-sm uppercase font-semibold tracking-widest">
             Our Contacts
           </h5>
+
           <h2 className="text-4xl font-extrabold text-[#0f172a] leading-snug">
             Get Our Contacts <br /> From Here
           </h2>
+
           <p className="text-gray-600 leading-relaxed">
-            Contact us regarding general queries, product feedback or
-            collaboration opportunities.
+            Contact us regarding general queries, product feedback or collaboration opportunities.
           </p>
+
+          <div>
+            <div className="mb-3 text-sm">
+              <span className="text-black/80 block">Need help? Call us</span>
+              <a href="tel:+919634701727" className="text-[#4f38ea] italic">
+                +91 9634701727
+              </a>
+            </div>
+
+            <div className="mb-3 text-sm">
+              <span className="text-black/80 block">Visit us at</span>
+              <address className="italic text-[#4f38ea]">
+                326, Nagal Bulandawala,<br />
+                Dehradun, Uttarakhand, India
+              </address>
+            </div>
+
+            <span className="text-black/80 block mb-1">Email us at</span>
+            <a href="mailto:info@steploops.com" className="text-[#4f38ea] text-sm block">
+              info@steploops.com
+            </a>
+          </div>
         </motion.div>
 
-        {/* RIGHT FORM */}
+        {/* RIGHT FORM PANEL */}
         <motion.div
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="bg-white p-8 shadow-xl rounded-2xl border border-gray-100"
+          className="bg-white p-8 shadow-xl rounded-2xl border border-gray-100 w-full"
         >
-          {/* Category */}
+          {/* CATEGORY DROPDOWN */}
           <div className="mb-6">
             <label className="block mb-2 font-semibold text-gray-700">
               Choose Query Type *
@@ -165,109 +184,50 @@ export default function Contact() {
             </select>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* NAME FIELDS — COMMON */}
+          <form onSubmit={handleSubmit} className="space-y-5 w-full">
+            {/* NAME INPUTS */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="First Name*"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-                className="w-full p-3 border rounded-md"
-              />
-
-              <input
-                type="text"
-                placeholder="Last Name*"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                required
-                className="w-full p-3 border rounded-md"
-              />
+              <input type="text" placeholder="First Name*" value={firstName} onChange={(e) => setFirstName(e.target.value)} required className="w-full p-3 border rounded-md" />
+              <input type="text" placeholder="Last Name*" value={lastName} onChange={(e) => setLastName(e.target.value)} required className="w-full p-3 border rounded-md" />
             </div>
 
-            {/* ✅ EMAIL + MOBILE NUMBER — NOW COMMON FOR ALL CATEGORIES */}
+            {/* PHONE + EMAIL */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Mobile Number*"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-                className="w-full p-3 border rounded-md"
-              />
-
-              <input
-                type="email"
-                placeholder="Email*"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full p-3 border rounded-md"
-              />
+              <input type="text" placeholder="Mobile Number*" value={phone} onChange={(e) => setPhone(e.target.value)} required className="w-full p-3 border rounded-md" />
+              <input type="email" placeholder="Email*" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full p-3 border rounded-md" />
             </div>
 
-            {/* PRODUCT REVIEW SECTION */}
+            {/* PRODUCT REVIEW */}
             {category === "review" && (
-              <select
-                value={product}
-                onChange={(e) => setProduct(e.target.value)}
-                required
-                className="w-full p-3 border rounded-md"
-              >
+              <select value={product} onChange={(e) => setProduct(e.target.value)} required className="w-full p-3 border rounded-md">
                 <option value="">Select Product</option>
                 <option value="CRM">CRM</option>
                 <option value="VendorBook">VendorBook</option>
               </select>
             )}
 
-            {/* WORK WITH US SECTION */}
+            {/* WORK WITH US */}
             {category === "work" && (
               <>
-                {/* CV Upload Button */}
+                {/* CV UPLOAD */}
                 <div>
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    className="hidden"
-                    onChange={(e) => setCvFile(e.target.files[0])}
-                    accept=".pdf,.doc,.docx"
-                  />
+                  <input type="file" ref={fileInputRef} className="hidden" onChange={(e) => setCvFile(e.target.files[0])} accept=".pdf,.doc,.docx" />
 
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current.click()}
-                    className="w-full p-3 bg-[#7A6CF6] text-white rounded-md font-semibold hover:bg-[#5f54d1]"
-                  >
+                  <button type="button" onClick={() => fileInputRef.current.click()} className="w-full p-3 bg-[#7A6CF6] text-white rounded-md font-semibold hover:bg-[#5f54d1]">
                     {cvFile ? "Change CV File" : "Upload CV"}
                   </button>
 
-                  {cvFile && (
-                    <p className="text-sm mt-2 text-gray-600">
-                      Selected: {cvFile.name}
-                    </p>
-                  )}
+                  {cvFile && <p className="text-sm mt-2 text-gray-600">Selected: {cvFile.name}</p>}
                 </div>
 
-                <select
-                  value={jobRole}
-                  onChange={(e) => setJobRole(e.target.value)}
-                  required
-                  className="w-full p-3 border rounded-md"
-                >
+                <select value={jobRole} onChange={(e) => setJobRole(e.target.value)} required className="w-full p-3 border rounded-md">
                   <option value="">Select Job Role</option>
                   <option value="SAP">SAP</option>
                   <option value="Web Development">Web Development</option>
                   <option value="Mobile Development">Mobile Development</option>
                 </select>
 
-                <select
-                  value={heardFrom}
-                  onChange={(e) => setHeardFrom(e.target.value)}
-                  required
-                  className="w-full p-3 border rounded-md"
-                >
+                <select value={heardFrom} onChange={(e) => setHeardFrom(e.target.value)} required className="w-full p-3 border rounded-md">
                   <option value="">How did you hear about us?</option>
                   <option value="linkedin">LinkedIn</option>
                   <option value="instagram">Instagram</option>
@@ -278,15 +238,9 @@ export default function Contact() {
             )}
 
             {/* MESSAGE */}
-            <textarea
-              placeholder="How can we assist you...?"
-              rows="5"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-              className="w-full p-3 border rounded-md"
-            ></textarea>
+            <textarea placeholder="How can we assist you...?" rows="5" value={message} onChange={(e) => setMessage(e.target.value)} required className="w-full p-3 border rounded-md"></textarea>
 
+            {/* SUBMIT */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 // Icons
@@ -8,6 +9,8 @@ const TechIcon = () => <span className="text-3xl">🖥️</span>;
 const CloudIcon = () => <span className="text-3xl">☁️</span>;
 const SoftwareIcon = () => <span className="text-3xl">⚙️</span>;
 const ProcessIcon = () => <span className="text-3xl">💼</span>;
+const InfrastructureIcon = () => <span className="text-3xl">🌐</span>;
+const SupportIcon = () => <span className="text-3xl">🛠️</span>;
 
 // Animation Variants
 const cardVariants = {
@@ -15,13 +18,9 @@ const cardVariants = {
   animate: (i) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.5,
-      delay: i * 0.1,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: { duration: 0.5, delay: i * 0.1 },
   }),
-  hover: { scale: 1.02, transition: { duration: 0.15 } },
+  hover: { scale: 1.02 },
 };
 
 const overlayVariants = {
@@ -40,17 +39,27 @@ const textVariants = {
 };
 
 const iconVariants = {
-  initial: { scale: 1, rotate: 0 },
-  hover: { scale: 1.1, rotate: [0, -5, 5, 0] },
+  initial: { scale: 1 },
+  hover: { scale: 1.1 },
 };
 
 // Service Card Component
 const ServiceCard = ({ title, description, icon, image, index }) => {
-  const anchor = `/Testimonials/Testimonial#${title.split(" ").join("-")}`;
+  const router = useRouter();
+
+  const handleClick = () => {
+    const id = title.split(" ").join("-");
+
+    // Store the section ID temporarily
+    sessionStorage.setItem("scrollToSection", id);
+
+    // Navigate to Testimonials page
+    router.push("/Testimonials/Testimonial");
+  };
 
   return (
-    <motion.a
-      href={anchor}
+    <motion.div
+      onClick={handleClick}
       className="relative bg-[#f3f6fb] h-full flex flex-col justify-between overflow-hidden cursor-pointer"
       variants={cardVariants}
       initial="initial"
@@ -62,7 +71,6 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
       <motion.div
         className="absolute inset-0 z-10 pointer-events-none"
         variants={overlayVariants}
-        transition={{ duration: 0.25 }}
       >
         {image && (
           <motion.img
@@ -70,26 +78,8 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
             alt={title}
             className="absolute inset-0 w-full h-full object-cover"
             variants={imageVariants}
-            transition={{ duration: 0.25 }}
           />
         )}
-
-        {/* Decorative Triangles */}
-        <motion.div
-          className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-600 to-violet-600"
-          style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
-          animate={{ x: "-100%", y: "-100%" }}
-          whileHover={{ x: 0, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        />
-
-        <motion.div
-          className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-600 to-violet-600"
-          style={{ clipPath: "polygon(100% 100%, 0 100%, 100% 0)" }}
-          animate={{ x: "100%", y: "100%" }}
-          whileHover={{ x: 0, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        />
       </motion.div>
 
       {/* Icon */}
@@ -97,64 +87,68 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
         {icon}
       </motion.div>
 
-      {/* Text Section */}
-      <motion.div className="relative z-20 p-4">
-        <motion.h3
-          className="text-lg font-semibold mb-1"
-          variants={textVariants}
-          transition={{ duration: 0.2 }}
-        >
+      {/* Text */}
+      <motion.div className="relative z-20 p-3">
+        <motion.h3 className="text-lg font-semibold mb-1" variants={textVariants}>
           {title}
         </motion.h3>
-
-        <motion.p
-          className="text-sm leading-relaxed"
-          variants={textVariants}
-          transition={{ duration: 0.2 }}
-        >
+        <motion.p className="text-xs" variants={textVariants}>
           {description}
         </motion.p>
       </motion.div>
-    </motion.a>
+    </motion.div>
   );
 };
 
-// Services
+// Services Data
 const servicesData = [
   {
     title: "SAP Innovation",
     description:
-      "Driving intelligent transformation through SAP-powered innovation.Empowering businesses to operate smarter, faster, and with greater precision.",
+      "Driving intelligent transformation through SAP-powered innovation. Empowering businesses to operate smarter and faster.",
     icon: <TechIcon />,
     image: "/assets/service1.jpg",
   },
   {
     title: "Mobile and Web Development",
     description:
-      "High-performance mobile applications engineered for speed and reliability.Built to deliver seamless, intuitive, and exceptional user experiences.",
+      "High-performance mobile and web applications built for speed, scalability, and world-class user experience.",
     icon: <CloudIcon />,
     image: "/assets/mobile dev.jpg",
   },
   {
     title: "Training and Recruitment",
     description:
-      "Empowering teams with practical IT and business training to strengthen performance and enable sustained organizational success.",
+      "Upskilling teams with IT and business training designed to improve capability and organizational performance.",
     icon: <SoftwareIcon />,
     image: "/assets/service3.jpg",
   },
   {
     title: "Custom Software Development",
     description:
-      "Designed to enhance efficiency, accelerate growth, and enable smarter operations.",
+      "Tailored software solutions engineered to streamline operations, boost efficiency, and support business growth.",
     icon: <ProcessIcon />,
     image: "/assets/service4.jpg",
   },
+  {
+    title: "Cloud Engineering",
+    description:
+      "Building secure, scalable cloud infrastructures with seamless migration, optimization, and automation.",
+    icon: <InfrastructureIcon />,
+    image: "/assets/cloud.jpg",
+  },
+  {
+    title: "IT Support & DevOps",
+    description:
+      "Reliable IT support combined with automated CI/CD pipelines for faster, efficient, and stable deployments.",
+    icon: <SupportIcon />,
+    image: "/assets/Ai.jpg",
+  },
 ];
 
-// Grid Component
 const ServicesGrid = () => (
   <section className="w-full bg-white border-b border-gray-300">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0">
       {servicesData.map((service, index) => (
         <ServiceCard key={index} {...service} index={index} />
       ))}
@@ -162,4 +156,4 @@ const ServicesGrid = () => (
   </section>
 );
 
-export default ServicesGrid; 
+export default ServicesGrid;

@@ -57,23 +57,27 @@ const ImageContainer = () => (
    ▶️ CONTENT BLOCK (Updated with Left-Aligned Pointers)
 --------------------------------------------------- */
 const ContentContainer = () => (
-  <motion.div
-    className="space-y-10"
-    variants={containerVariants}
-    initial="hidden"
-    animate="visible"
+    <motion.div
+      className="space-y-10"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Heading */}
+      <motion.div
+    variants={itemVariants}
+    className="space-y-4 flex flex-col items-center text-center"
   >
-    {/* Heading */}
-    <motion.div variants={itemVariants} className="space-y-4">
-      <h1 className="text-3xl md:text-3xl font-extrabold text-gray-900 leading-tight">
-        IT Solutions We Deliver:
-      </h1>
+    <h1 className="text-3xl md:text-3xl font-extrabold text-gray-900 leading-tight">
+      IT Solutions We Deliver:
+    </h1>
 
-      <p className="text-lg text-gray-600 max-w-xl">
-        We design, develop, deploy, and support modern technology solutions
-        that accelerate your digital transformation.
-      </p>
-    </motion.div>
+    <p className="text-lg text-gray-600 max-w-xl">
+      We design, develop, deploy, and support modern technology solutions
+      that accelerate your digital transformation.
+    </p>
+  </motion.div>
+
 
     {/* Service Groups */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-700">
