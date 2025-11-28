@@ -11,12 +11,12 @@ const services = [
   {
     title: "SAP Services",
     text: "StepLoops Technology Pvt. Ltd. offers end-to-end SAP services that streamline and scale your enterprise operations. We begin with an in-depth consultation to assess your current systems and design a tailored SAP strategy. Our team manages the full implementation with minimal disruption and continues to provide ongoing maintenance, updates, and optimization to keep your environment secure and efficient. With experienced SAP professionals, we help you overcome complex challenges, enhance performance, and maximize the value of your SAP investment.",
-    image: "/assets/meetingroom2.jpg",
+    image: "/assets/sapsolu.jpg",
   },
   {
     title: "SAP Solutions",
     text: "Our SAP Solutions are thoughtfully designed to simplify your business processes, boost operational efficiency, and support long-term strategic growth. Every organization has its own set of challenges and objectives, which is why we provide fully customized SAP services tailored to your unique requirements. Our certified SAP consultants bring extensive industry expertise and work closely with your team to implement solutions that align with your goals.",
-    image: "/assets/meetingroom3.jpg",
+    image: "/assets/sapjpg.jpg",
   },
   {
     title: "Mobile Development",
@@ -53,8 +53,8 @@ export default function ServicesPage() {
 
       {/* TOP BANNER */}
       <section
-        className="relative h-[50vh] sm:h-[60vh] flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: "url('/assets/meetingroom2.jpg')" }}
+        className="relative h-[50vh] sm:h-[60vh] flex items-center justify-center bg-cover bg-center  bg-black/50"
+        style={{ backgroundImage: "url('/assets/service4.jpg')" }}
       >
         <div className="absolute inset-0 bg-gradient-to-l from-indigo-900/80 via-black/50 to-black/70"></div>
         <div className="relative z-10 text-center text-white px-4 sm:px-8">

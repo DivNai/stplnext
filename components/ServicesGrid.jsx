@@ -23,34 +23,72 @@ const cardVariants = {
   hover: { scale: 1.02 },
 };
 
-const overlayVariants = {
-  initial: { opacity: 0 },
-  hover: { opacity: 1 },
-};
-
-const imageVariants = {
-  initial: { opacity: 0 },
-  hover: { opacity: 0.7 },
-};
-
+const overlayVariants = { initial: { opacity: 0 }, hover: { opacity: 1 } };
+const imageVariants = { initial: { opacity: 0 }, hover: { opacity: 0.7 } };
 const textVariants = {
-  initial: { color: "#000000", y: 0 },
-  hover: { color: "#ffffff", y: -3 },
+  initial: { color: "#000", y: 0 },
+  hover: { color: "#fff", y: -3 },
 };
+const iconVariants = { initial: { scale: 1 }, hover: { scale: 1.1 } };
 
-const iconVariants = {
-  initial: { scale: 1 },
-  hover: { scale: 1.1 },
-};
+// *** IMPORTANT — IDs must match EXACTLY with Testimonial.jsx ***
+const servicesData = [
+  {
+    id: "SAP-Innovation",
+    title: "SAP Innovation",
+    description:
+      "Driving intelligent transformation through SAP-powered innovation.",
+    icon: <TechIcon />,
+    image: "/assets/service1.jpg",
+  },
+  {
+    id: "Mobile-and-Web-Development",
+    title: "Mobile and Web Development",
+    description:
+      "High-performance mobile and web applications built for scalability.",
+    icon: <CloudIcon />,
+    image: "/assets/mobile dev.jpg",
+  },
+  {
+    id: "Training-and-Recruitment",
+    title: "Training and Recruitment",
+    description:
+      "Upskilling teams with IT and business training for better performance.",
+    icon: <SoftwareIcon />,
+    image: "/assets/service3.jpg",
+  },
+  {
+    id: "Custom-Software-Development",
+    title: "Custom Software Development",
+    description:
+      "Tailored software solutions engineered to streamline operations.",
+    icon: <ProcessIcon />,
+    image: "/assets/service4.jpg",
+  },
+  {
+    id: "Cloud-Engineering",
+    title: "Cloud Engineering",
+    description:
+      "Secure, scalable cloud infrastructures with automation systems.",
+    icon: <InfrastructureIcon />,
+    image: "/assets/cloud.jpg",
+  },
+  {
+    id: "IT-Support-&-DevOps",
+    title: "IT Support & DevOps",
+    description:
+      "CI/CD pipelines and stable infrastructure with 24/7 support.",
+    icon: <SupportIcon />,
+    image: "/assets/Ai.jpg",
+  },
+];
 
 // Service Card Component
-const ServiceCard = ({ title, description, icon, image, index }) => {
+const ServiceCard = ({ id, title, description, icon, image, index }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    const id = title.split(" ").join("-");
-
-    // Store the section ID temporarily
+    // Save the id inside sessionStorage
     sessionStorage.setItem("scrollToSection", id);
 
     // Navigate to Testimonials page
@@ -99,52 +137,6 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
     </motion.div>
   );
 };
-
-// Services Data
-const servicesData = [
-  {
-    title: "SAP Innovation",
-    description:
-      "Driving intelligent transformation through SAP-powered innovation. Empowering businesses to operate smarter and faster.",
-    icon: <TechIcon />,
-    image: "/assets/service1.jpg",
-  },
-  {
-    title: "Mobile and Web Development",
-    description:
-      "High-performance mobile and web applications built for speed, scalability, and world-class user experience.",
-    icon: <CloudIcon />,
-    image: "/assets/mobile dev.jpg",
-  },
-  {
-    title: "Training and Recruitment",
-    description:
-      "Upskilling teams with IT and business training designed to improve capability and organizational performance.",
-    icon: <SoftwareIcon />,
-    image: "/assets/service3.jpg",
-  },
-  {
-    title: "Custom Software Development",
-    description:
-      "Tailored software solutions engineered to streamline operations, boost efficiency, and support business growth.",
-    icon: <ProcessIcon />,
-    image: "/assets/service4.jpg",
-  },
-  {
-    title: "Cloud Engineering",
-    description:
-      "Building secure, scalable cloud infrastructures with seamless migration, optimization, and automation.",
-    icon: <InfrastructureIcon />,
-    image: "/assets/cloud.jpg",
-  },
-  {
-    title: "IT Support & DevOps",
-    description:
-      "Reliable IT support combined with automated CI/CD pipelines for faster, efficient, and stable deployments.",
-    icon: <SupportIcon />,
-    image: "/assets/Ai.jpg",
-  },
-];
 
 const ServicesGrid = () => (
   <section className="w-full bg-white border-b border-gray-300">

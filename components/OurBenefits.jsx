@@ -47,7 +47,7 @@ const OurBenefits = () => {
         <MotionH1
           variants={textAnimation}
           viewport={{ once: true }}
-          className="text-2xl md:text-4xl font-semibold leading-snug"
+          className="text-2xl md:text-4xl font-semibold leading-snug text-indigo-600"
         >
           Empowering Your Business with Expert Guidance
         </MotionH1>
