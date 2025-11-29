@@ -87,7 +87,7 @@ const ServiceCard = ({ id, title, description, icon, image, index }) => {
 
   const handleClick = () => {
     sessionStorage.setItem("scrollToSection", id);
-    router.push("/Testimonials/Testimonial");
+    router.push("/Testimonials/Testimonial#${id}");
   };
 
   return (

@@ -11,6 +11,8 @@ const services = [
   { name: "Web Development", href: "/Testimonials/Testimonial#Web-Development" },
   { name: "Training and Recruitment", href: "/Testimonials/Testimonial#Training-and-Recruitment" },
   { name: "Custom Software Development", href: "/Testimonials/Testimonial#Custom-Software-Development" },
+  { name: "Cloud Technologies", href: "/Testimonials/Testimonial#Cloud-Technologies" },
+  { name: "AI & ML Solutions", href: "/Testimonials/Testimonial#AI-&-ML-Solutions" },
 ];
 
 const menuItems = [
