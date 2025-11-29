@@ -35,8 +35,18 @@ const services = [
   },
   {
     title: "Custom Software Development",
-    text: "Our Custom Software Development services build tailored solutions that integrate seamlessly with your existing systems, ensuring high performance and long-term scalability.",
+    text: "We build bespoke software solutions engineered to solve your unique business challenges. Our expert team delivers high-performance applications that integrate seamlessly with your existing systems, driving efficiency and scalability.Our Approach:Starting with an in-depth consultation, we gain a comprehensive understanding of your requirements and objectives. We then develop a clear project roadmap outlining scope, timelines, and deliverables. Using cutting-edge technologies and industry best practices, our experienced developers create secure, scalable solutions tailored precisely to your needs.Continuous Collaboration:Throughout the development cycle, we maintain open communication and incorporate your feedback at every stage. This ensures our solutions not only meet your current requirements but are built to evolve with your business, delivering lasting value and competitive advantage.",
     image: "/assets/custon soft_dev.jpg",
+  },
+   {
+    title: "Cloud Technologies",
+    text: "Transform your business with scalable, secure cloud solutions that drive efficiency and innovation. We deliver end-to-end cloud services—from strategy and migration to management and optimization—leveraging leading platforms like AWS, Azure, and Google Cloud.Our Approach:We start by assessing your current infrastructure and business goals, then design a tailored cloud strategy that aligns with your needs. Our expert team ensures seamless migration with minimal disruption, implementing robust security measures and optimizing performance at every stage.Scalable Solutions, Lasting Value:Whether you need public, private, or hybrid cloud environments, we build flexible infrastructures that integrate smoothly with your existing systems. Our solutions reduce operational costs, enhance collaboration, and provide the agility to scale on demand—empowering your organization to focus on growth while we manage the complexity.",
+    image: "/assets/cloud.jpg",
+  },
+   {
+    title: "AI & ML Solutions",
+    text: "Harness the power of artificial intelligence to unlock new opportunities, automate complex processes, and gain actionable insights from your data. Our AI solutions transform how you work, enabling smarter decision-making and sustainable competitive advantage.Our Approach:We begin by identifying high-impact use cases aligned with your business objectives. Our AI specialists then design and deploy custom solutions using advanced machine learning, natural language processing, and computer vision technologies. From predictive analytics and intelligent automation to chatbots and recommendation engines, we build AI systems tailored to your specific challenges.Intelligent Innovation, Measurable ResultsOur solutions integrate seamlessly with your existing infrastructure, turning raw data into strategic assets. We ensure responsible AI implementation with robust security, ethical frameworks, and continuous model optimization.",
+    image: "/assets/Ai.jpg",
   },
 ];
 

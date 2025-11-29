@@ -8,8 +8,8 @@ const Home = () => {
   const router = useRouter();
 
   /* ---------- Typewriter Scroll-Triggered Logic ---------- */
-  const fullText = `Driven by expertise , 
-  Defined by innovation .`;
+  const fullText = `Driven by expertise  
+  Defined by innovation `;
 
   const [displayedText, setDisplayedText] = useState("");
   const homeRef = useRef(null);
