@@ -10,17 +10,17 @@ import Footer from "../../components/Footer";
 const services = [
   {
     title: "SAP Services",
-    text: "StepLoops Technology Pvt. Ltd. offers end-to-end SAP services that streamline and scale your enterprise operations. We begin with an in-depth consultation to assess your current systems and design a tailored SAP strategy. Our team manages the full implementation with minimal disruption and continues to provide ongoing maintenance, updates, and optimization to keep your environment secure and efficient. With experienced SAP professionals, we help you overcome complex challenges, enhance performance, and maximize the value of your SAP investment.",
+    text: "StepLoops Technology Pvt. Ltd. simplifies and expands your business operations with end-to-end SAP services. To evaluate your existing systems and create a customized SAP strategy, we start with a thorough consultation. To keep your environment safe and effective, our team continues to provide regular maintenance, updates, and optimization while managing the entire implementation with the least amount of disturbance. We assist you in overcoming difficult obstacles, improving performance, and optimizing the return on your SAP investment with the assistance of skilled SAP specialists.",
     image: "/assets/sapsolu.jpg",
   },
   {
     title: "SAP Solutions",
-    text: "Our SAP Solutions are thoughtfully designed to simplify your business processes, boost operational efficiency, and support long-term strategic growth. Every organization has its own set of challenges and objectives, which is why we provide fully customized SAP services tailored to your unique requirements. Our certified SAP consultants bring extensive industry expertise and work closely with your team to implement solutions that align with your goals.",
+    text: "We carefully design our SAP Solutions to make your business processes easier, improve operational efficiency, and help your business grow strategically over the long term. Every business has its own problems and goals. That's why we offer fully customized SAP services that meet your specific needs.Our certified SAP consultants bring extensive industry expertise and work closely with your team to implement solutions that not only align with your goals but also elevate your business performance.  Through this collaborative and comprehensive approach, we deliver systems that enhance visibility across your operations, strengthen process control, and enable the agility needed to stay competitive in a rapidly evolving market.",
     image: "/assets/sapjpg.jpg",
   },
   {
     title: "Mobile Development",
-    text: "Our Mobile Development services focus on delivering high-quality, custom mobile applications that cater to the diverse needs of your audience. We use the latest technologies and frameworks to develop functional, engaging, and user-friendly apps.",
+    text: "Delivering top-notch, unique mobile applications that meet the various demands of your audience is the main goal of our mobile development services. We use the newest frameworks and technologies to create apps that are not only useful but also entertaining and easy to use because we recognize how important it is to have a strong mobile presence in today's digital world. To make sure the finished product is dependable, functions well under a variety of circumstances, and offers a flawless user experience, our development process involves extensive testing.",
     image: "/assets/mobile dev.jpg",
   },
   {
