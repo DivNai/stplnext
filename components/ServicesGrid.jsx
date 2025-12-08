@@ -31,17 +31,17 @@ const textVariants = {
 };
 const iconVariants = { initial: { scale: 1 }, hover: { scale: 1.08 } };
 
-// Services
+// Services - Updated IDs to match the second component
 const servicesData = [
   {
-    id: "SAP-Innovation",
+    id: "SAP-Services", // Changed to match section in second component
     title: "SAP Innovation",
     description:"Transforming enterprises through innovative SAP technologies that unlock efficiency, agility, and sustainable growth.SAP-driven innovation for intelligent business transformation.",
     icon: <TechIcon />,
     image: "/assets/service1.jpg",
   },
   {
-    id: "Mobile-and-Web-Development",
+    id: "Mobile-Development", // Changed to match section in second component
     title: "Mobile and Web Development",
     description:
       "Building robust mobile and web solutions that deliver exceptional performance and seamless scalability.Delivering fast, reliable experiences that grow .",
@@ -65,7 +65,7 @@ const servicesData = [
     image: "/assets/service4.jpg",
   },
   {
-    id: "Cloud Technologies",
+    id: "Cloud-Technologies",
     title: "Cloud Technologies",
     description:
       "Deploy robust cloud environments with advanced automation and enterprise-grade security.Our scalable solutions leverage leading platforms to deliver high performance..",
@@ -73,7 +73,7 @@ const servicesData = [
     image: "/assets/cloud.jpg",
   },
   {
-    id: "AI-and-ML-Solutions",
+    id: "AI-&-ML-Solutions", // Changed to match section in second component
     title: "AI and ML Solutions",
     description:"Transform operations with AI solutions engineered for real-world business impact. From predictive analytics and intelligent chatbots, we build scalable AI systems that enhance decision-making.",
     icon: <SupportIcon />,
@@ -86,8 +86,8 @@ const ServiceCard = ({ id, title, description, icon, image, index }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    sessionStorage.setItem("scrollToSection", id);
-    router.push("/Testimonials/Testimonial#${id}");
+    // Navigate to the Testimonials page with the section ID as a hash
+    router.push(`/Testimonials/Testimonial#${id}`);
   };
 
   return (
